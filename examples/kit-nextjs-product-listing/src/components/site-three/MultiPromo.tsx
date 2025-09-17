@@ -1,9 +1,6 @@
 import { useMemo } from 'react';
-import {
-  Text as ContentSdkText,
-  NextImage as ContentSdkImage,
-  Link as ContentSdkLink,
-} from '@sitecore-content-sdk/nextjs';
+import { Text as ContentSdkText, Link as ContentSdkLink } from '@sitecore-content-sdk/nextjs';
+import { Default as ImageWrapper } from '@/components/image/ImageWrapper.dev';
 import { IGQLImageField, IGQLLinkField, IGQLTextField } from 'types/igql';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 
@@ -39,8 +36,8 @@ type PromoItemProps = SimplePromoFields & {
 const PromoItem = ({ isHorizontal, ...promo }: PromoItemProps) => {
   return (
     <div className={`grid gap-8 ${isHorizontal ? 'lg:grid-cols-[1fr_2fr]' : ''}`}>
-      <ContentSdkImage
-        field={promo.image?.jsonValue}
+      <ImageWrapper
+        image={promo.image?.jsonValue}
         className="w-full h-full aspect-square object-cover shadow-2xl"
       />
       <div>

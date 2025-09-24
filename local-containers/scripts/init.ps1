@@ -126,10 +126,10 @@ $sitecoreApiKey = (New-Guid).Guid
 Set-EnvFileVariable "SITECORE_API_KEY_APP_STARTER" -Value $sitecoreApiKey -Path $envFileLocation
 
 ################################
-# Generate JSS_EDITING_SECRET
+# Generate SITECORE_EDITING_SECRET
 ################################
-$jssEditingSecret = Get-SitecoreRandomString 64 -DisallowSpecial
-Set-EnvFileVariable "JSS_EDITING_SECRET" -Value $jssEditingSecret -Path $envFileLocation
+$sitecoreEditingSecret = Get-SitecoreRandomString 64 -DisallowSpecial
+Set-EnvFileVariable "SITECORE_EDITING_SECRET" -Value $sitecoreEditingSecret -Path $envFileLocation
 
 ###############################
 # Populate the environment file

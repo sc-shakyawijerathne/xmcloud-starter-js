@@ -42,7 +42,10 @@ export const Default = (props: HeaderSTProps) => {
           <ContentSdkImage field={props.fields?.Logo} className="w-full h-full object-contain" />
         </Link>
 
-        <div className="relative flex [.partial-editing-mode_&]:flex-col-reverse justify-between items-start gap-10 grow max-w-7xl lg:px-4 bg-background">
+        <div
+          className="relative flex [.partial-editing-mode_&]:flex-col-reverse justify-between items-start gap-10 grow max-w-7xl lg:px-4 bg-background"
+          role="navigation"
+        >
           <div
             className={`${
               isMobileMenuVisible

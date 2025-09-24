@@ -6,6 +6,7 @@ import {
   ImageField,
   Field,
   LinkField,
+  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import { Button } from '@/components/ui/button';
 
@@ -32,6 +33,9 @@ const PromoDefaultComponent = (props: PromoProps): JSX.Element => (
 
 export const Default = (props: PromoProps): JSX.Element => {
   const id = props.params.RenderingIdentifier;
+  const { page } = useSitecore();
+  const { isEditing } = page.mode;
+
   if (props.fields) {
     return (
       <div
@@ -41,22 +45,30 @@ export const Default = (props: PromoProps): JSX.Element => {
       >
         <div className="flex flex-col items-start justify-end h-full">
           <ContentSdkImage field={props.fields.PromoIcon} className="w-full h-auto object-cover" />
-          <div className="flex-1 relative pt-4 px-6">
-            <ContentSdkRichText
-              tag="div"
-              className="inline-block text-base font-bold px-2 py-1 mb-4 bg-[#ffb900]"
-              field={props.fields.PromoText3}
-            />
-            <ContentSdkRichText
-              tag="h2"
-              className="text-3xl font-bold mb-4"
-              field={props.fields.PromoText}
-            />
-            <ContentSdkRichText
-              tag="div"
-              className="text-base mb-4"
-              field={props.fields.PromoText2}
-            />
+          <div className={`flex-1 relative pt-4 px-6 ${isEditing ? 'min-w-[300px] w-full' : ''}`}>
+            {(props.fields.PromoText3?.value || isEditing) && (
+              <ContentSdkRichText
+                tag="div"
+                className={`inline-block text-base font-bold px-2 py-1 mb-4 bg-[#ffb900] ${
+                  isEditing ? 'min-w-[200px] w-full' : ''
+                }`}
+                field={props.fields.PromoText3}
+              />
+            )}
+            {(props.fields.PromoText?.value || isEditing) && (
+              <ContentSdkRichText
+                tag="h2"
+                className={`text-3xl font-bold mb-4 ${isEditing ? 'min-w-[250px] w-full' : ''}`}
+                field={props.fields.PromoText}
+              />
+            )}
+            {(props.fields.PromoText2?.value || isEditing) && (
+              <ContentSdkRichText
+                tag="div"
+                className={`text-base mb-4 ${isEditing ? 'min-w-[200px] w-full' : ''}`}
+                field={props.fields.PromoText2}
+              />
+            )}
           </div>
           <Button
             variant="default"
@@ -75,6 +87,9 @@ export const Default = (props: PromoProps): JSX.Element => {
 
 export const CenteredCard = (props: PromoProps): JSX.Element => {
   const id = props.params.RenderingIdentifier;
+  const { page } = useSitecore();
+  const { isEditing } = page.mode;
+
   if (props.fields) {
     return (
       <div
@@ -84,13 +99,25 @@ export const CenteredCard = (props: PromoProps): JSX.Element => {
       >
         <div className="flex flex-col items-start justify-end">
           <ContentSdkImage field={props.fields.PromoIcon} className="w-full h-auto object-cover" />
-          <div className="flex-1 relative pt-4 px-4 w-full justify-center text-center">
-            <ContentSdkRichText
-              tag="h2"
-              className="text-4xl font-bold mb-4"
-              field={props.fields.PromoText}
-            />
-            <ContentSdkRichText tag="div" className="mb-4" field={props.fields.PromoText2} />
+          <div
+            className={`flex-1 relative pt-4 px-4 w-full justify-center text-center ${
+              isEditing ? 'min-w-[300px]' : ''
+            }`}
+          >
+            {(props.fields.PromoText?.value || isEditing) && (
+              <ContentSdkRichText
+                tag="h2"
+                className={`text-4xl font-bold mb-4 ${isEditing ? 'min-w-[250px] w-full' : ''}`}
+                field={props.fields.PromoText}
+              />
+            )}
+            {(props.fields.PromoText2?.value || isEditing) && (
+              <ContentSdkRichText
+                tag="div"
+                className={`mb-4 ${isEditing ? 'min-w-[200px] w-full' : ''}`}
+                field={props.fields.PromoText2}
+              />
+            )}
           </div>
           <Button
             variant="link"

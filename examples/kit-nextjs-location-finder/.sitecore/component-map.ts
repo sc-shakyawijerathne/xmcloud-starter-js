@@ -65,7 +65,6 @@ import * as PlaceholderTabs from 'components/component-library/PlaceholderTabs';
 import * as Portal from 'components/portal/portal.dev';
 import * as ProductListing from 'components/product-listing/ProductListing';
 import * as ProductsSection from 'components/component-library/ProductsSection';
-import * as Promo from 'components/sxa/Promo';
 import * as PromoAnimated from 'components/promo-animated/PromoAnimated';
 import * as PromoBlock from 'components/promo-block/PromoBlock';
 import * as PromoImage from 'components/promo-image/PromoImage';
@@ -157,7 +156,6 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['Portal', Portal],
   ['ProductListing', ProductListing],
   ['ProductsSection', ProductsSection],
-  ['Promo', Promo],
   ['PromoAnimated', PromoAnimated],
   ['PromoBlock', PromoBlock],
   ['PromoImage', PromoImage],

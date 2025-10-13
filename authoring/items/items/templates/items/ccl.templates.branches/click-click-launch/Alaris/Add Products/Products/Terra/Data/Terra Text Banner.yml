@@ -1,6 +1,6 @@
 ---
-ID: "terra-text-banner-001"
-Parent: "terra-data-folder-001"
+ID: "1524bc13-7cbc-44ed-88ba-c2ab509e8516"
+Parent: "875e30d2-2da2-4940-9619-bd334844ae18"
 Template: "1313c346-ca98-4657-bb96-d89e35b2235f"
 Path: "/sitecore/templates/Branches/Project/click-click-launch/Alaris/Add Products/Products/Terra/Data/Terra Text Banner"
 Languages:
@@ -21,7 +21,7 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "terra-text-banner-revision-001"
+      Value: "9062cc67-e268-4a40-ae20-2470d9f7ad0b"
     - ID: "b52480d8-082e-45b3-8c7c-1995592ca5f6"
       Hint: heading
       Value: "Conquer Every Trail with Confidence"

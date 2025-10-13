@@ -1,6 +1,6 @@
 ---
-ID: "terra-image-gallery-001"
-Parent: "terra-data-folder-001"
+ID: "427ed81c-0abe-48af-8bdd-c6670d4ff997"
+Parent: "875e30d2-2da2-4940-9619-bd334844ae18"
 Template: "4eb24890-61ec-4283-8c61-c55a86d1fe2a"
 Path: "/sitecore/templates/Branches/Project/click-click-launch/Alaris/Add Products/Products/Terra/Data/Image Gallery 1"
 Languages:
@@ -32,7 +32,7 @@ Languages:
         <image mediaid="11356a96-9e1e-457e-8856-24bfae1ea602" />
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "terra-image-gallery-revision-001"
+      Value: "9bf70719-d507-4f17-b765-b6381a23a2ed"
     - ID: "a5a74a19-c942-421c-9ff5-c3116fcffa0d"
       Hint: image1
       Value: |

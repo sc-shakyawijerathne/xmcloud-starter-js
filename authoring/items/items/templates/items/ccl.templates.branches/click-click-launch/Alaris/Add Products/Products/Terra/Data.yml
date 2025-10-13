@@ -1,5 +1,5 @@
 ---
-ID: "terra-data-folder-001"
+ID: "875e30d2-2da2-4940-9619-bd334844ae18"
 Parent: "9dd619fc-5273-4734-ae98-bdefc4dce1ae"
 Template: "1c82e550-ebcd-4e5d-8abd-d50d0809541e"
 Path: "/sitecore/templates/Branches/Project/click-click-launch/Alaris/Add Products/Products/Terra/Data"
@@ -21,7 +21,7 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "terra-data-revision-001"
+      Value: "bd09842a-5fb4-4b4a-9238-e69720c1b7c6"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |

@@ -14,7 +14,7 @@ Languages:
     - ID: "45324e3c-4e19-41d7-9497-bdcde2228eb1"
       Hint: image2
       Value: |
-        <image mediaid="11356a96-9e1e-457e-8856-24bfae1ea602" />
+        <image mediaid="c0e3c348-3708-42d4-8d0c-ece6ffc8d598" />
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
@@ -29,21 +29,21 @@ Languages:
     - ID: "69a878be-bdf4-4509-a304-238b0a24bac4"
       Hint: image4
       Value: |
-        <image mediaid="11356a96-9e1e-457e-8856-24bfae1ea602" />
+        <image mediaid="65385841-6ae3-489c-a1cd-1ab9236bdc57" />
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
       Value: "9bf70719-d507-4f17-b765-b6381a23a2ed"
     - ID: "a5a74a19-c942-421c-9ff5-c3116fcffa0d"
       Hint: image1
       Value: |
-        <image mediaid="11356a96-9e1e-457e-8856-24bfae1ea602" />
+        <image mediaid="7d2baee6-8c25-4cce-bfe8-149e95de021d" />
     - ID: "a7be6790-3f1a-43fc-94bb-302604c97081"
       Hint: description
       Value: "Experience the ultimate off-road adventure with Terra's intelligent TrailSense AI and rugged capability designed for every terrain."
     - ID: "b293c09d-fd8e-4eee-97bd-0f30f3f4ca10"
       Hint: image3
       Value: |
-        <image mediaid="11356a96-9e1e-457e-8856-24bfae1ea602" />
+        <image mediaid="7d2baee6-8c25-4cce-bfe8-149e95de021d" />
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |

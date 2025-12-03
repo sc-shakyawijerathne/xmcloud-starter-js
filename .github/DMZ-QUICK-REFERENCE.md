@@ -81,7 +81,7 @@ git push --force-with-lease origin dmz
 - **[Complete Workflow Guide](.github/DMZ-WORKFLOW.md)** - Detailed explanations and troubleshooting
 - **[Branch Protection Setup](.github/BRANCH-PROTECTION-SETUP.md)** - For repository maintainers
 
-## 🆘 Still Stuck?
+## 🆘 Still Stuck? Test
 
 1. Check if you're on the latest `main`: `git fetch origin main && git rebase origin/main`
 2. Check if your PR targets `dmz` (not `main`)

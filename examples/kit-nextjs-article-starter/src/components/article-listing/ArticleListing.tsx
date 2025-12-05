@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react';
+import Image from 'next/image';
 import {
   Link,
-  useSitecore,
   Text,
   Field,
   ImageField,
@@ -56,9 +58,9 @@ export const Default: React.FC<ArticleListingProps> = ({
   fields,
   params,
   isPageEditing: propIsEditing,
+  page,
 }) => {
   const { titleOptional, descriptionOptional, linkOptional, featuredContent } = fields || {};
-  const { page } = useSitecore();
   const contextIsEditing = page.mode.isEditing;
 
   // Use the prop value if provided, otherwise fall back to the context value
@@ -141,25 +143,27 @@ export const Default: React.FC<ArticleListingProps> = ({
             {featuredArticles.map((article, index) => (
               <div key={index} className="@md:mb-0 group/article mb-6">
                 {isPageEditing ? (
-                  <div className="rounded-default @md:mb-0 mb-4 aspect-[3/2] w-full overflow-hidden">
-                    <img
+                  <div className="rounded-default @md:mb-0 relative mb-4 aspect-[3/2] w-full overflow-hidden">
+                    <Image
                       src={article.image}
                       alt={article.title}
-                      className="h-full w-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   </div>
                 ) : (
                   <div
-                    className="rounded-default @md:mb-0 mb-4 aspect-[3/2] w-full cursor-pointer overflow-hidden"
+                    className="rounded-default @md:mb-0 relative mb-4 aspect-[3/2] w-full cursor-pointer overflow-hidden"
                     onClick={() => (window.location.href = article.link)}
                     role="button"
                     tabIndex={0}
                     onKeyDown={(e) => e.key === 'Enter' && (window.location.href = article.link)}
                   >
-                    <img
+                    <Image
                       src={article.image}
                       alt={article.title}
-                      className="h-full w-full object-cover transition-transform duration-300 group-hover/article:scale-105"
+                      fill
+                      className="object-cover transition-transform duration-300 group-hover/article:scale-105"
                     />
                   </div>
                 )}
@@ -180,12 +184,13 @@ export const Default: React.FC<ArticleListingProps> = ({
                   </p>
                   <div className="mt-6 flex items-center gap-4">
                     {(article.authorImage || article.author) && (
-                      <div className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center overflow-hidden rounded-full">
+                      <div className="bg-primary text-primary-foreground relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full">
                         {article.authorImage ? (
-                          <img
+                          <Image
                             src={article.authorImage}
                             alt={`${article.author} avatar`}
-                            className="h-full w-full object-cover"
+                            fill
+                            className="object-cover"
                           />
                         ) : article.author ? (
                           <span className="text-xs font-medium">
@@ -236,12 +241,13 @@ export const Default: React.FC<ArticleListingProps> = ({
                 </div>
                 <div className="mt-auto flex items-center gap-4 pt-6">
                   {(article.authorImage || article.author) && (
-                    <div className="bg-primary text-primary-foreground flex h-8 w-8 items-center justify-center overflow-hidden rounded-full">
+                    <div className="bg-primary text-primary-foreground relative flex h-8 w-8 items-center justify-center overflow-hidden rounded-full">
                       {article.authorImage ? (
-                        <img
+                        <Image
                           src={article.authorImage}
                           alt={`${article.author} avatar`}
-                          className="h-full w-full object-cover"
+                          fill
+                          className="object-cover"
                         />
                       ) : article.author ? (
                         <span className="text-xs font-medium">

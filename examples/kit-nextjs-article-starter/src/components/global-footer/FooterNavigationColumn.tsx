@@ -1,3 +1,5 @@
+'use client';
+
 import { FC, useId } from 'react';
 import {
   Accordion,
@@ -11,7 +13,7 @@ import {
   FooterNavigationLink,
 } from '@/components/global-footer/global-footer.props';
 import { Button } from '@/components/ui/button';
-import { Link, Text, useSitecore } from '@sitecore-content-sdk/nextjs';
+import { Link, Text } from '@sitecore-content-sdk/nextjs';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 import { useMatchMedia } from '@/hooks/use-match-media';
 /**
@@ -19,9 +21,8 @@ import { useMatchMedia } from '@/hooks/use-match-media';
  * It displays a header and a list of navigation links.
  */
 export const Default: FC<FooterNavigationColumnProps> = (props) => {
-  const { fields } = props;
+  const { fields, page } = props;
   const { items, header } = fields.data?.datasource ?? {};
-  const { page } = useSitecore();
   const isPageEditing = page.mode.isEditing;
 
   const accordionId = useId();

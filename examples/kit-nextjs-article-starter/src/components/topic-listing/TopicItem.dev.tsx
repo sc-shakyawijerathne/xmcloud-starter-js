@@ -1,3 +1,5 @@
+'use client';
+
 import { ButtonBase } from '@/components/button-component/ButtonComponent';
 import { TopicItemProps } from './topic-listing.props';
 import { ButtonVariants } from '@/enumerations/ButtonStyle.enum';

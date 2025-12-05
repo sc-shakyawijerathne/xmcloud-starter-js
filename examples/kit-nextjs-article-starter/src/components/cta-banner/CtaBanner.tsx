@@ -3,7 +3,7 @@ import type React from 'react';
 import { Button } from '@/components/ui/button';
 import { Default as AnimatedSection } from '@/components/animated-section/AnimatedSection.dev';
 import { NoDataFallback } from '@/utils/NoDataFallback';
-import { Field, LinkField, Text, Link, useSitecore } from '@sitecore-content-sdk/nextjs';
+import { Field, LinkField, Text, Link } from '@sitecore-content-sdk/nextjs';
 import { ColorSchemeLimited as ColorScheme } from '@/enumerations/ColorSchemeLimited.enum';
 import { EnumValues } from '@/enumerations/generic.enum';
 import { ComponentProps } from '@/lib/component-props';
@@ -59,8 +59,7 @@ const ctaButtonVariants = cva('text-sm font-heading font-medium', {
 });
 
 export const Default: React.FC<CtaBannerProps> = (props) => {
-  const { page } = useSitecore();
-  const isPageEditing = page.mode.isEditing;
+  const isPageEditing = props.page.mode.isEditing;
   const { fields, params } = props;
 
   if (fields) {

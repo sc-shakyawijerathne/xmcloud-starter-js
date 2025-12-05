@@ -1,9 +1,10 @@
 import type React from 'react';
-import { Placeholder, useSitecore } from '@sitecore-content-sdk/nextjs';
 import { Flex, FlexItem } from '@/components/flex/Flex.dev';
 import { cn } from '@/lib/utils';
 import { PlaceholderProps } from '@/types/Placeholder.props';
 import { ComponentProps } from '@/lib/component-props';
+import componentMap from '.sitecore/component-map';
+import { AppPlaceholder } from '@sitecore-content-sdk/nextjs';
 
 /**
  * Model used for Sitecore Component integration
@@ -17,9 +18,7 @@ type Container70Params = {
 };
 
 export const Default: React.FC<Container70Props> = (props) => {
-  const { rendering, children } = props;
-
-  const { page } = useSitecore();
+  const { rendering, children, page } = props;
 
   const isPageEditing = page.mode.isEditing;
 
@@ -35,7 +34,8 @@ export const Default: React.FC<Container70Props> = (props) => {
     return null;
   }
 
-  const excludeTopMargin = props?.params?.excludeTopMargin === '1' ? true : false;
+  const excludeTopMargin =
+    props?.params?.excludeTopMargin === '1' ? true : false;
 
   return (
     <section
@@ -50,7 +50,12 @@ export const Default: React.FC<Container70Props> = (props) => {
       <Flex className="group-[.is-inset]:p-0">
         <FlexItem basis="full">
           <div className="mx-auto md:max-w-[70%]">
-            <Placeholder name={PLACEHOLDER_NAME} rendering={rendering} />
+            <AppPlaceholder
+              name={PLACEHOLDER_NAME}
+              rendering={rendering}
+              page={page}
+              componentMap={componentMap}
+            />
           </div>
         </FlexItem>
       </Flex>

@@ -1,3 +1,5 @@
+'use client';
+
 import { ImageField, useSitecore } from '@sitecore-content-sdk/nextjs';
 import { getImageProps } from 'next/image';
 

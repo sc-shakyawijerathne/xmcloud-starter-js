@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState } from 'react';
 import { cn } from '@/lib/utils';
 import { Text, Link } from '@sitecore-content-sdk/nextjs';
@@ -5,12 +7,10 @@ import { Default as ImageWrapper } from '@/components/image/ImageWrapper.dev';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 import { VerticalImageAccordionProps } from './vertical-image-accordion.props';
 import { EditableButton } from '@/components/button-component/ButtonComponent';
-import { useSitecore } from '@sitecore-content-sdk/nextjs';
 
-export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageEditing }) => {
+export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageEditing, page }) => {
   const [activeIndex, setActiveIndex] = useState<number>(1);
   const [isExpanding, setIsExpanding] = useState(false);
-  const { page } = useSitecore();
   const isEditMode = isPageEditing || page.mode.isEditing;
 
   const handleClick = (index: number) => {
@@ -47,7 +47,7 @@ export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageE
           {title?.jsonValue && (
             <Text
               tag="h2"
-              field={title.jsonValue}
+              field={title?.jsonValue}
               className="font-heading text-primary-foreground @lg:text-6xl mb-16 text-4xl font-light tracking-tight"
             />
           )}
@@ -64,7 +64,7 @@ export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageE
                 >
                   {(isEditMode || item?.image?.jsonValue?.value?.src) && (
                     <ImageWrapper
-                      image={item.image.jsonValue}
+                      image={item?.image?.jsonValue}
                       className="rounded-default h-full w-full object-cover"
                       wrapperClass="h-full w-full"
                       aria-hidden="true"
@@ -76,7 +76,7 @@ export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageE
                   {item?.title && (
                     <Text
                       tag="h3"
-                      field={item.title.jsonValue}
+                      field={item?.title?.jsonValue}
                       className="font-accent text-primary-foreground text-2xl font-medium"
                       id={`tab-${index}`}
                     />
@@ -85,7 +85,7 @@ export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageE
                   {item?.description && (
                     <Text
                       tag="p"
-                      field={item.description.jsonValue}
+                      field={item?.description?.jsonValue}
                       className="text-primary-foreground mt-2"
                     />
                   )}
@@ -150,7 +150,7 @@ export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageE
         {title?.jsonValue && (
           <Text
             tag="h2"
-            field={title.jsonValue}
+            field={title?.jsonValue}
             className="font-heading text-primary-foreground @lg:text-6xl mb-16 text-4xl font-light tracking-tight"
           />
         )}
@@ -207,7 +207,7 @@ export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageE
                     <div className="absolute inset-0">
                       <div className="h-full w-full">
                         <ImageWrapper
-                          image={item.image.jsonValue}
+                          image={item?.image?.jsonValue}
                           className="rounded-default h-full w-full object-cover"
                           wrapperClass="h-full w-full"
                           aria-hidden="true"
@@ -230,7 +230,7 @@ export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageE
                     {item?.title && (
                       <Text
                         tag="h3"
-                        field={item.title.jsonValue}
+                        field={item?.title?.jsonValue}
                         className="font-accent text-primary-foreground text-2xl font-medium"
                         id={`tab-${index}`}
                       />
@@ -257,7 +257,7 @@ export const Default: React.FC<VerticalImageAccordionProps> = ({ fields, isPageE
                     {item?.description && (
                       <Text
                         tag="p"
-                        field={item.description.jsonValue}
+                        field={item?.description?.jsonValue}
                         className="text-primary-foreground mt-2"
                       />
                     )}

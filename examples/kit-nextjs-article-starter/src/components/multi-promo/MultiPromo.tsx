@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import { RichText, Text } from '@sitecore-content-sdk/nextjs';
 import { debounce } from 'radash';
@@ -11,17 +13,15 @@ import { cn } from '@/lib/utils';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 import { MultiPromoItemProps, MultiPromoProps } from './multi-promo.props';
 import { Default as MultiPromoItem } from './MultiPromoItem.dev';
-import { useSitecore } from '@sitecore-content-sdk/nextjs';
 
 export const Default: React.FC<MultiPromoProps> = (props) => {
-  const { fields, params } = props;
+  const { fields, params, page } = props;
   const { numColumns } = params ?? {};
   const { children } = fields?.data?.datasource ?? {};
   const { title, description } = fields?.data?.datasource || {};
   const [api, setApi] = useState<CarouselApi>();
   const [announcement, setAnnouncement] = useState('');
   const carouselRef = useRef<HTMLDivElement>(null);
-  const { page } = useSitecore();
   const isPageEditing = page.mode.isEditing;
   // General slide handling
   useEffect(() => {

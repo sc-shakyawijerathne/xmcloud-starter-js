@@ -1,5 +1,7 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import { Text, useSitecore } from '@sitecore-content-sdk/nextjs';
+import { Text } from '@sitecore-content-sdk/nextjs';
 import { cva } from 'class-variance-authority';
 import { Play, Pause } from 'lucide-react';
 import { cn } from '@/lib/utils';
@@ -26,7 +28,7 @@ export const heroVariants = cva('hero @container py-24 relative w-full overflow-
   },
 });
 
-export const Default: React.FC<HeroProps> = ({ fields, params }) => {
+export const Default: React.FC<HeroProps> = ({ fields, params, page }) => {
   // Destructure fields and params
 
   const {
@@ -44,7 +46,6 @@ export const Default: React.FC<HeroProps> = ({ fields, params }) => {
   } = fields || {};
 
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const { page } = useSitecore();
   const isPageEditing = page.mode.isEditing;
 
   const { colorScheme } = params;

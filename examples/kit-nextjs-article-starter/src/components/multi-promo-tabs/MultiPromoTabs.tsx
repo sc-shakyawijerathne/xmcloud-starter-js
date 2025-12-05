@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useId } from 'react';
-import { useSitecore, Text } from '@sitecore-content-sdk/nextjs';
+import { Text } from '@sitecore-content-sdk/nextjs';
 import { AnimatePresence } from 'framer-motion';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import {
@@ -15,9 +17,8 @@ import { Default as PromoTab } from './MultiPromoTab.dev';
 
 export const Default: React.FC<MultiPromoTabsProps> = (props) => {
   const [activeTab, setActiveTab] = useState(0);
-  const { fields, isPageEditing } = props;
+  const { fields, page, isPageEditing } = props;
 
-  const { page } = useSitecore();
   const isEditMode = isPageEditing || page.mode.isEditing;
 
   const id = useId();
@@ -25,10 +26,12 @@ export const Default: React.FC<MultiPromoTabsProps> = (props) => {
   if (fields) {
     const tabItems = fields.data?.datasource?.children?.results ?? [];
     // Get the initially selected tab title for the dropdown display
-    const initialTabTitle = tabItems[0]?.title?.jsonValue?.value || 'Select an option';
+    const initialTabTitle =
+      tabItems[0]?.title?.jsonValue?.value || 'Select an option';
     // Get dropdown label text or use default
     const droplistLabelText =
-      fields.data?.datasource?.droplistLabel?.jsonValue?.value || 'Select a value';
+      fields.data?.datasource?.droplistLabel?.jsonValue?.value ||
+      'Select a value';
 
     // When in editor mode, render all tabs stacked
     if (isEditMode) {
@@ -75,12 +78,19 @@ export const Default: React.FC<MultiPromoTabsProps> = (props) => {
             onValueChange={(value) => setActiveTab(Number(value))}
             defaultValue={activeTab.toString()}
           >
-            <SelectTrigger id={id} className="text-primary-foreground w-full border-0 bg-black/20">
+            <SelectTrigger
+              id={id}
+              className="text-primary-foreground w-full border-0 bg-black/20"
+            >
               <SelectValue placeholder={initialTabTitle} />
             </SelectTrigger>
             <SelectContent>
               {tabItems.map((item, index) => (
-                <SelectItem key={index} value={index.toString()} className="capitalize">
+                <SelectItem
+                  key={index}
+                  value={index.toString()}
+                  className="capitalize"
+                >
                   {item.title?.jsonValue.value || `Tab ${index + 1}`}
                 </SelectItem>
               ))}

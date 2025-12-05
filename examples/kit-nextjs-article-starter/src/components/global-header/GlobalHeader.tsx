@@ -1,7 +1,9 @@
+'use client';
+
 import { Fragment, useState, useEffect } from 'react';
 import Link from 'next/link';
 import { Menu } from 'lucide-react';
-import { Link as SitecoreLink, useSitecore, Image } from '@sitecore-content-sdk/nextjs';
+import { Link as SitecoreLink, Image } from '@sitecore-content-sdk/nextjs';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
@@ -17,11 +19,10 @@ import { Button } from '@/components/ui/button';
 import { Url } from 'next/dist/shared/lib/router/router';
 
 export const Default: React.FC<GlobalHeaderProps> = (props) => {
-  const { fields } = props ?? {};
+  const { fields, page } = props ?? {};
   const { logo, headerContact } = fields?.data?.item ?? {};
   const links = fields?.data?.item?.children?.results ?? [];
   const [isOpen, setIsOpen] = useState(false);
-  const { page } = useSitecore();
   const pageEditing = page.mode.isEditing;
 
   const [visible, setVisible] = useState(true);

@@ -6,6 +6,7 @@ import { ComponentParams, ComponentRendering, Page } from '@sitecore-content-sdk
 export type ComponentProps = {
   rendering: ComponentRendering;
   params: ComponentParams;
+  page: Page;
 };
 
 /**

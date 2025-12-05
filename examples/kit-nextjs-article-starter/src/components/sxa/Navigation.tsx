@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, JSX } from 'react';
 import { Link, LinkField, TextField, useSitecore } from '@sitecore-content-sdk/nextjs';
 

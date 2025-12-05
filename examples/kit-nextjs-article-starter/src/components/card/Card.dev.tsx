@@ -1,11 +1,17 @@
-import { RichText, Text } from '@sitecore-content-sdk/nextjs';
+import {
+  RichText,
+  Text,
+  Field,
+  ImageField,
+  LinkField,
+  Link,
+} from '@sitecore-content-sdk/nextjs';
 import { Card, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Default as Icon } from '@/components/icon/Icon';
 import { Default as ImageWrapper } from '@/components/image/ImageWrapper.dev';
 import { IconName } from '@/enumerations/Icon.enum';
 import { EnumValues } from '@/enumerations/generic.enum';
-import { Field, ImageField, LinkField, Link } from '@sitecore-content-sdk/nextjs';
 import { cn } from '@/lib/utils';
 
 type CardProps = {
@@ -24,11 +30,15 @@ type CardProps = {
  * @returns
  */
 export const Default: React.FC<CardProps> = (props) => {
-  const { image, heading, description, link, className, icon, editable } = props;
+  const { image, heading, description, link, className, icon, editable } =
+    props;
 
   return (
     <Card className={cn('flex flex-col overflow-hidden', className)}>
-      <ImageWrapper image={image} className="aspect-video w-full object-cover" />
+      <ImageWrapper
+        image={image}
+        className="aspect-video w-full object-cover"
+      />
       <CardHeader>
         <CardTitle>
           <Text field={heading} />
@@ -41,7 +51,8 @@ export const Default: React.FC<CardProps> = (props) => {
             <Link editable={editable} field={link}>
               {editable && (
                 <>
-                  {link?.value?.text} <Icon iconName={icon ? icon : IconName.INTERNAL} />
+                  {link?.value?.text}{' '}
+                  <Icon iconName={icon ? icon : IconName.INTERNAL} />
                 </>
               )}
             </Link>

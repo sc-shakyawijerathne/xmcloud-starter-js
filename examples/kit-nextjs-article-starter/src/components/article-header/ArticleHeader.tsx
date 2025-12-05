@@ -12,7 +12,6 @@ import {
   LinkField,
   Text,
   DateField,
-  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import { ComponentProps } from '@/lib/component-props';
 
@@ -23,7 +22,7 @@ import { Button } from '@/components/ui/button';
 import { FloatingDock } from '@/components/floating-dock/floating-dock.dev';
 import { useToast } from '@/hooks/use-toast';
 import { Toaster } from '@/components/ui/toaster';
-import { useI18n } from 'next-localization';
+import { useTranslations } from 'next-intl';
 import { dictionaryKeys } from '@/variables/dictionary';
 import { formatDateInUTC } from '@/utils/date-utils';
 import { Default as Icon } from '@/components/icon/Icon';
@@ -77,7 +76,7 @@ interface PersonItem {
   personLinkedIn?: LinkField;
 }
 
-export const Default: React.FC<ArticleHeaderProps> = ({ fields }) => {
+export const Default: React.FC<ArticleHeaderProps> = ({ fields, page }) => {
   const { imageRequired, eyebrowOptional } = fields?.data?.datasource ?? {};
   const externalFields = fields?.data?.externalFields ?? {};
   const {
@@ -94,9 +93,8 @@ export const Default: React.FC<ArticleHeaderProps> = ({ fields }) => {
   const [copySuccess, setCopySuccess] = useState(false);
   const [forceCollapse] = useState(true);
   const copyNotificationRef = useRef<HTMLDivElement>(null);
-  const { page } = useSitecore();
   const isPageEditing = page.mode.isEditing;
-  const { t } = useI18n();
+  const t = useTranslations();
   const dictionary = {
     ARTICLE_HEADER_BACKTONEWS: t(dictionaryKeys.ARTICLE_HEADER_BACKTONEWS),
     ARTICLE_HEADER_AUTHOR_LABEL: t(dictionaryKeys.ARTICLE_HEADER_AUTHOR_LABEL),

@@ -1,13 +1,14 @@
+'use client';
+
 import { useState } from 'react';
-import { Text, Image, Field, useSitecore } from '@sitecore-content-sdk/nextjs';
+import { Text, Image, Field } from '@sitecore-content-sdk/nextjs';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 import { LogoTabsProps } from './logo-tabs.props';
 import { LogoItem } from './LogoItem';
 import { EditableButton as Button } from '@/components/button-component/ButtonComponent';
 import { cn } from '@/lib/utils';
 
-export const Default: React.FC<LogoTabsProps> = ({ fields, isPageEditing: propIsPageEditing }) => {
-  const { page } = useSitecore();
+export const Default: React.FC<LogoTabsProps> = ({ fields, page, isPageEditing: propIsPageEditing }) => {
   const isPageEditing = propIsPageEditing || page.mode.isEditing;
   const { title, backgroundImage, logos, logoTabContent } = fields?.data?.datasource ?? {};
   const [activeTabIndex, setActiveTabIndex] = useState(0);

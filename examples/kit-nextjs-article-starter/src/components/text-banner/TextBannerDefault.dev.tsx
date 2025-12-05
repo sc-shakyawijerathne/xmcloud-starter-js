@@ -2,8 +2,7 @@ import { TextBannerProps } from './text-banner.props';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { Flex, FlexItem } from '@/components/flex/Flex.dev';
-import { Link } from '@sitecore-content-sdk/nextjs';
-import { Text } from '@sitecore-content-sdk/nextjs';
+import { Link, Text } from '@sitecore-content-sdk/nextjs';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 
 export const Default: React.FC<TextBannerProps> = (props) => {

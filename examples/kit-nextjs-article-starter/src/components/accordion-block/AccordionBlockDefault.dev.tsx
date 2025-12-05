@@ -7,7 +7,7 @@ import { AccordionBlockItem } from './AccordionBlockItem.dev';
 import { NoDataFallback } from '@/utils/NoDataFallback';
 
 export const AccordionBlockDefault: React.FC<AccordionProps> = (props) => {
-  const { fields, isPageEditing } = props;
+  const { fields, isPageEditing, params } = props || {};
 
   const { heading, description, link, children } = fields?.data?.datasource || {};
   const accordionItems = children?.results ?? [];
@@ -20,7 +20,7 @@ export const AccordionBlockDefault: React.FC<AccordionProps> = (props) => {
         data-component="AccordionBlock"
         data-class-change
         className={cn('@container bg-secondary text-secondary-foreground rounded-3xl', {
-          [props.params.styles]: props?.params?.styles,
+          [params.styles as string]: params?.styles,
         })}
       >
         <div className=" @md:py-16 @lg:py-20 @lg:grid-cols-[320px,1fr] @lg:gap-12 @xl:gap-16 mx-auto grid max-w-screen-xl gap-8 py-10">

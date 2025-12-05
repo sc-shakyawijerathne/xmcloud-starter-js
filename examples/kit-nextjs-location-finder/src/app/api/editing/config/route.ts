@@ -2,7 +2,7 @@ import { createEditingConfigRouteHandler } from '@sitecore-content-sdk/nextjs/ro
 import { NextRequest, NextResponse } from 'next/server';
 import components from '.sitecore/component-map';
 import metadata from '.sitecore/metadata.json';
-
+import clientComponents from '.sitecore/component-map.client';
 /**
  * This API route is used by Sitecore Editor in XM Cloud
  * to provide editing configuration.
@@ -10,6 +10,7 @@ import metadata from '.sitecore/metadata.json';
 
 const baseHandler = createEditingConfigRouteHandler({
   components,
+  clientComponents,
   metadata,
 });
 

@@ -1,9 +1,6 @@
 'use client';
 import React from 'react';
-import {
-  Page,
-  SitecoreProvider,
-} from '@sitecore-content-sdk/nextjs';
+import { Page, SitecoreProvider } from '@sitecore-content-sdk/nextjs';
 import scConfig from 'sitecore.config';
 import components from '.sitecore/component-map.client';
 import { ThemeProvider } from '@/components/theme-provider/theme-provider.dev';
@@ -17,7 +14,12 @@ export default function Providers({
   page: Page;
 }) {
   return (
-    <SitecoreProvider api={scConfig.api} componentMap={components} page={page}>
+    <SitecoreProvider
+      api={scConfig.api}
+      componentMap={components}
+      page={page}
+      loadImportMap={() => import('.sitecore/import-map.client')}
+    >
       <VideoProvider>
         <ThemeProvider
           attribute="class"

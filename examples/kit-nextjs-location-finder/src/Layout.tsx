@@ -4,7 +4,7 @@ import Scripts from 'src/Scripts';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Sora, Roboto } from 'next/font/google';
 import SitecoreStyles from 'components/content-sdk/SitecoreStyles';
-import { DesignLibraryLayout } from './DesignLibraryLayout';
+import { DesignLibraryApp } from "@sitecore-content-sdk/nextjs";
 import componentMap from '.sitecore/component-map';
 import Providers from './Providers';
 
@@ -54,8 +54,15 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
         {/* root placeholder for the app, which we add components to using route data */}
         <div className={`min-h-screen flex flex-col ${classNamesMain}`}>
           {page.mode.isDesignLibrary ? (
-            <DesignLibraryLayout />
-          ) : (
+          route && (
+            <DesignLibraryApp
+              page={page}
+              rendering={route}
+              componentMap={componentMap}
+              loadServerImportMap={() => import(".sitecore/import-map.server")}
+            />
+          )
+        )  : (
             <>
               <header>
                 <div id="header">

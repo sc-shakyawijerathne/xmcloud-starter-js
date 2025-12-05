@@ -5,4 +5,4 @@ import { createEditingRenderRouteHandlers } from '@sitecore-content-sdk/nextjs/r
  * to render components for editing mode.
  */
 
-export const { GET, OPTIONS } = createEditingRenderRouteHandlers({});
+export const { GET, POST, OPTIONS } = createEditingRenderRouteHandlers({});

@@ -8,11 +8,11 @@ import {
   Field,
   ImageField,
   AppPlaceholder,
+  DesignLibraryApp,
 } from '@sitecore-content-sdk/nextjs';
 import Scripts from 'src/Scripts';
 import SitecoreStyles from 'components/content-sdk/SitecoreStyles';
 import { Figtree } from 'next/font/google';
-import { DesignLibraryLayout } from './DesignLibraryLayout';
 import componentMap from '.sitecore/component-map';
 import Providers from './Providers';
 
@@ -97,7 +97,16 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
         {/* root placeholder for the app, which we add components to using route data */}
         <div className={`min-h-screen flex flex-col ${classNamesMain}`}>
           {mode.isDesignLibrary ? (
-            <DesignLibraryLayout />
+            route && (
+              <DesignLibraryApp
+                page={page}
+                rendering={route}
+                componentMap={componentMap}
+                loadServerImportMap={() =>
+                  import('.sitecore/import-map.server')
+                }
+              />
+            )
           ) : (
             <>
               <header>

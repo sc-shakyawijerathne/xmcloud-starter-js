@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client';
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useId } from 'react';
 import { useSitecore, Text } from '@sitecore-content-sdk/nextjs';
 import { AnimatePresence } from 'framer-motion';

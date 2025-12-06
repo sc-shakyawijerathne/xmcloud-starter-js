@@ -37,7 +37,7 @@ export default function Providers({
         return '';
       }}
     >
-      <SitecoreProvider api={scConfig.api} componentMap={components} page={page}>
+      <SitecoreProvider api={scConfig.api} componentMap={components} page={page} loadImportMap={() => import('.sitecore/import-map.client')}>
         <ComponentPropsContext value={componentProps || {}}>
           <VideoProvider>
             <ThemeProvider

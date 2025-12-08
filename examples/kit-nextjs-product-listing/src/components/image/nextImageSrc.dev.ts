@@ -1,10 +1,8 @@
-import { ImageField, useSitecore } from '@sitecore-content-sdk/nextjs';
+import { ImageField } from '@sitecore-content-sdk/nextjs';
 import { getImageProps } from 'next/image';
+import { ImageProps } from './image.props';
 
-const getImageUrl = (imageField: ImageField) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
-  const { page } = useSitecore();
-  const { mode } = page;
+const getImageUrl = (imageField: ImageField, mode: ImageProps['page']['mode']) => {
   const src = imageField?.value?.src;
 
   if (!mode.isNormal && src?.startsWith('/')) {
@@ -14,10 +12,10 @@ const getImageUrl = (imageField: ImageField) => {
   return src ? `${src.replace('http://cm/', '/')}` : '';
 };
 
-export const nextImageSrc = (img: ImageField) =>
+export const nextImageSrc = (img: ImageField, page: ImageProps['page']) =>
   getImageProps({
     alt: (img.value as { alt: string }).alt,
     width: (img.value as { width: number }).width,
     height: (img.value as { height: number }).height,
-    src: getImageUrl(img),
+    src: getImageUrl(img, page.mode),
   })?.props?.src;

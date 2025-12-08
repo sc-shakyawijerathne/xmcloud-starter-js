@@ -1,3 +1,5 @@
+'use client';
+
 import { Text } from '@sitecore-content-sdk/nextjs';
 import React, { useState } from 'react';
 import { NoDataFallback } from '@/utils/NoDataFallback';

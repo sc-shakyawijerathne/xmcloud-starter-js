@@ -1,3 +1,5 @@
+'use client';
+
 import { Text as ContentSdkText, NextImage as ContentSdkImage } from '@sitecore-content-sdk/nextjs';
 import { useMemo } from 'react';
 import { IGQLImageField, IGQLLinkField, IGQLTextField } from 'types/igql';

@@ -1,13 +1,15 @@
+'use client';
+
 import {
   NextImage as ContentSdkImage,
   Link as ContentSdkLink,
   RichText as ContentSdkRichText,
   Text as ContentSdkText,
-  useSitecore,
 } from '@sitecore-content-sdk/nextjs';
 import { IGQLImageField, IGQLLinkField, IGQLRichTextField, IGQLTextField } from 'src/types/igql';
 import { Button } from 'shadcd/components/ui/button';
 import { useMemo, useState, useRef, useEffect, type JSX } from 'react';
+import { ComponentProps } from '@/lib/component-props';
 import {
   Accordion,
   AccordionContent,
@@ -55,7 +57,7 @@ interface FeatureFields {
   featureLink2: IGQLLinkField;
 }
 
-type FeatureSectionProps = {
+type FeatureSectionProps = ComponentProps & {
   params: { [key: string]: string };
   fields: Fields;
 };
@@ -1507,7 +1509,7 @@ export const FeaturesSection22 = (props: FeatureSectionProps): JSX.Element => {
 };
 
 export const FeaturesSection23 = (props: FeatureSectionProps): JSX.Element => {
-  const { page } = useSitecore();
+  const { page } = props;
   const isPageEditing = page.mode.isEditing;
 
   const datasource = useMemo(() => props.fields.data.datasource, [props.fields.data.datasource]);
@@ -1572,7 +1574,7 @@ export const FeaturesSection23 = (props: FeatureSectionProps): JSX.Element => {
 };
 
 export const FeaturesSection24 = (props: FeatureSectionProps): JSX.Element => {
-  const { page } = useSitecore();
+  const { page } = props;
   const isPageEditing = page.mode.isEditing;
 
   const datasource = useMemo(() => props.fields.data.datasource, [props.fields.data.datasource]);

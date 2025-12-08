@@ -1,5 +1,3 @@
-'use client';
-
 import type { LocationSearchItemProps } from './location-search.props';
 import { Text } from '@sitecore-content-sdk/nextjs';
 

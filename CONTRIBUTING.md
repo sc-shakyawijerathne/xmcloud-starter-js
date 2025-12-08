@@ -81,6 +81,26 @@ The repository contains `.cursor/rules/` directory with AI guidance files:
   - `nextjs.mdc` - Next.js specific patterns, routing, and API development
   - `testing.mdc` - Testing strategies for XM Cloud components and integrations
 
+### Windsurf IDE Rules
+
+The repository includes a **`.windsurfrules`** file for Windsurf's agentic IDE workflows:
+
+- **Comprehensive Standards** - Consolidated rules covering:
+  - Project overview with multi-starter architecture
+  - TypeScript strict mode and naming conventions
+  - Complete folder structure with examples
+  - Best practices (RO-RO pattern, functional components, immutability)
+  - Tailwind CSS styling and Shadcn/ui integration
+  - XM Cloud data handling with Zod validation and readonly types
+  - Testing patterns with Jest/Playwright and coverage expectations
+  - Safety rules and development workflow
+
+- **Windsurf Features** - Optimized for:
+  - Multi-line autocompletion with context-aware suggestions
+  - Chat-based code navigation and exploration
+  - Agentic workflows with architectural guidance
+  - Component scaffolding with proper XM Cloud patterns
+
 ### GitHub Copilot Support
 
 The repository includes dedicated GitHub Copilot guidance files:
@@ -109,6 +129,12 @@ When using AI coding assistants:
 - Follow the naming conventions and architectural guidance provided
 - Refer to the rules when uncertain about XM Cloud implementation approaches
 
+**Windsurf IDE:**
+- The `.windsurfrules` file provides comprehensive coding standards and patterns
+- Optimized for multi-line autocompletion with full context awareness
+- Enables chat-based code navigation with architectural guidance
+- Supports agentic workflows with XM Cloud-specific component patterns
+
 **GitHub Copilot:**
 - Reference `copilot-instructions.md` for detailed development patterns
 - Use `LLMs.txt` for quick context about project standards
@@ -129,6 +155,12 @@ To improve the AI guidance files:
 2. Keep rules under 500 lines and focused on specific concerns
 3. Include concrete examples and file references using `@filepath` syntax
 
+**For Windsurf IDE:**
+1. Update `.windsurfrules` for comprehensive standards and patterns
+2. Organize content into clear sections (Overview, Standards, Structure, Best Practices, etc.)
+3. Include code examples demonstrating proper XM Cloud patterns
+4. Keep synchronized with Cursor rules and Copilot instructions
+
 **For GitHub Copilot:**
 1. Update `copilot-instructions.md` for detailed patterns and examples
 2. Update `LLMs.txt` for concise guidance and quick reference
@@ -138,6 +170,7 @@ To improve the AI guidance files:
 4. Test changes with AI coding assistants to ensure effectiveness
 5. Consider impact across all starter applications
 6. Keep guidance files synchronized with actual codebase patterns
+7. When updating standards, propagate changes to all AI guidance files (Cursor, Windsurf, Copilot)
 
 5. 🚀 Submitting a Pull Request
 Once your changes are ready:

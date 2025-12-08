@@ -2,12 +2,12 @@ import React, { type JSX } from 'react';
 import {
   RichText as ContentSdkRichText,
   Text as ContentSdkText,
-  useSitecore,
   RichTextField,
   LinkField,
   TextField,
 } from '@sitecore-content-sdk/nextjs';
 import Link from 'next/link';
+import { ComponentProps } from 'lib/component-props';
 
 interface Fields {
   Title: TextField;
@@ -15,7 +15,7 @@ interface Fields {
   MainLink: LinkField;
 }
 
-type PageContentProps = {
+type PageContentProps = ComponentProps & {
   params: { [key: string]: string };
   fields: Fields;
 };
@@ -38,7 +38,7 @@ const ComponentContent = (props: ComponentContentProps) => {
 };
 
 export const Default = (props: PageContentProps): JSX.Element => {
-  const { page } = useSitecore();
+  const { page } = props;
   const { route } = page.layout.sitecore;
   const id = props.params.RenderingIdentifier;
 
@@ -57,14 +57,14 @@ export const Default = (props: PageContentProps): JSX.Element => {
   ) as RichTextField;
 
   return (
-    <ComponentContent styles={props.params.styles} id={id}>
+    <ComponentContent styles={props.params.styles || ''} id={id || ''}>
       <ContentSdkRichText field={field} />
     </ComponentContent>
   );
 };
 
 export const TitleAndBody = (props: PageContentProps): JSX.Element => {
-  const { page } = useSitecore();
+  const { page } = props;
   const { route } = page.layout.sitecore;
 
   const fields = {

@@ -109,7 +109,8 @@ This repository uses a **DMZ git workflow** to ensure the `main` branch is alway
 This repository includes comprehensive AI guidance files to help maintain consistent code quality and follow Sitecore XM Cloud best practices across all starter applications:
 
 - **Cursor AI Rules** (`.cursor/rules/`) - Automatically provide context and enforce patterns when using Cursor AI
+- **Windsurf IDE Rules** (`.windsurfrules`) - Comprehensive coding standards, folder structure, and best practices for Windsurf's agentic IDE workflows
 - **GitHub Copilot Instructions** (`copilot-instructions.md`) - Detailed development patterns and component guidelines for GitHub Copilot
 - **LLM Guidance** (`LLMs.txt`) - Concise guidance for various AI assistants covering architecture principles and safety rules
 
-These files ensure consistent development patterns whether you're using Cursor AI, GitHub Copilot, or other AI coding assistants. See the [Contributing Guide](CONTRIBUTING.md#ai-assisted-development) for details on using AI assistance with this project.
+These files ensure consistent development patterns whether you're using Cursor AI, Windsurf IDE, GitHub Copilot, or other AI coding assistants. See the [Contributing Guide](CONTRIBUTING.md#ai-assisted-development) for details on using AI assistance with this project.

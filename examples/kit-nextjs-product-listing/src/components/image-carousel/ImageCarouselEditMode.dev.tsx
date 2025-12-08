@@ -1,5 +1,3 @@
-'use client';
-
 import { Text } from '@sitecore-content-sdk/nextjs';
 import { Default as ImageWrapper } from '@/components/image/ImageWrapper.dev';
 import type { ImageCarouselProps } from './image-carousel.props';

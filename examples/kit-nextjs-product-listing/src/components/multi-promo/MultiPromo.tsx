@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useRef } from 'react';
 import { RichText, Text } from '@sitecore-content-sdk/nextjs';
 import { debounce } from 'radash';

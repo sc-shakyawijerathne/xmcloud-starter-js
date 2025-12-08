@@ -1,3 +1,5 @@
+'use client';
+
 import {
   NextImage as ContentSdkImage,
   Link as ContentSdkLink,

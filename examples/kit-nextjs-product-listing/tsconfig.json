@@ -2,9 +2,6 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/tw/*": [
-        "tailwind-config/*"
-      ],
       "components/*": [
         "src/components/*"
       ],
@@ -26,49 +23,36 @@
       "types/*": [
         "src/types/*"
       ],
-      "react": [
-        "node_modules/react"
+      ".sitecore/*": [
+        ".sitecore/*"
       ],
+      "next/*": ["node_modules/next/*"],
       "@/*": [
         "./src/*"
-      ]
+      ],
     },
-    "target": "es5",
-    "types": [
-      "node"
-    ],
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "target": "ES2017",
+    "types": ["node"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
-    "strictFunctionTypes": false,
-    "downlevelIteration": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "strictFunctionTypes": false,
     "module": "esnext",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "allowSyntheticDefaultImports": true,
-    "noImplicitReturns": true,
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "incremental": true,
-    "forceConsistentCasingInFileNames": false
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
+  "exclude": ["node_modules"]
 }

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useEffect, useState, type JSX } from 'react';
 import { Link as ContentSdkLink, Text, LinkField, TextField } from '@sitecore-content-sdk/nextjs';
 
@@ -79,7 +81,7 @@ export const Default = (props: LinkListProps): JSX.Element => {
             field={datasource?.field?.title}
             className="text-nowrap mb-5 text-xl font-bold text-gray-600"
           />
-          <ul className="list-none p-0 m-0" role="listbox" aria-label="Navigation options">
+          <ul className="list-none p-0 m-0" aria-label="Navigation options">
             {list}
           </ul>
         </div>
@@ -201,20 +203,17 @@ export const FooterLinks = (props: LinkListProps): JSX.Element => {
         const href = link?.value?.href || '';
 
         return (
-          <>
+          <React.Fragment key={`${key}${href}`}>
             <ContentSdkLink
               key={`${key}${href}-link`}
               className="font-[inherit]"
               field={element.field.link}
               prefetch={false}
             />
-            <span
-              key={`${key}${href}-separator`}
-              className="font-[inherit] last:!hidden hidden lg:[.with-separators_&]:inline-block"
-            >
+            <span className="font-[inherit] last:!hidden hidden lg:[.with-separators_&]:inline-block">
               /
             </span>
-          </>
+          </React.Fragment>
         );
       });
 

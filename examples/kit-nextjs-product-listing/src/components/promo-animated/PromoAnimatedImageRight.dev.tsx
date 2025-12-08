@@ -1,3 +1,5 @@
+'use client';
+
 import { useEffect, useState, useRef } from 'react';
 import { Text, RichText } from '@sitecore-content-sdk/nextjs';
 import { ButtonBase as Button } from '@/components/button-component/ButtonComponent';

@@ -1,3 +1,5 @@
+'use client';
+
 import { useMemo } from 'react';
 import {
   Text as ContentSdkText,

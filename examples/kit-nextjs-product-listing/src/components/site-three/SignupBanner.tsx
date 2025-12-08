@@ -10,7 +10,7 @@ import {
   RichTextField,
   Text as ContentSdkText,
 } from '@sitecore-content-sdk/nextjs';
-import { useI18n } from 'next-localization';
+import { useTranslations } from 'next-intl';
 
 interface Fields {
   Heading: Field<string>;
@@ -31,7 +31,7 @@ const DICTIONARY_KEYS = {
 
 export const Default = (props: SignupBannerProps) => {
   const { fields } = props;
-  const { t } = useI18n();
+  const t = useTranslations();
 
   if (!fields) {
     return null;
@@ -78,7 +78,7 @@ export const Default = (props: SignupBannerProps) => {
 
 export const ContentLeft = (props: SignupBannerProps) => {
   const { fields } = props;
-  const { t } = useI18n();
+  const t = useTranslations();
 
   if (!fields) {
     return null;
@@ -126,7 +126,7 @@ export const ContentLeft = (props: SignupBannerProps) => {
 
 export const BackgroundPrimary = (props: SignupBannerProps) => {
   const { fields } = props;
-  const { t } = useI18n();
+  const t = useTranslations();
 
   if (!fields) {
     return null;
@@ -171,7 +171,7 @@ export const BackgroundPrimary = (props: SignupBannerProps) => {
 
 export const BackgroundDark = (props: SignupBannerProps) => {
   const { fields } = props;
-  const { t } = useI18n();
+  const t = useTranslations();
 
   if (!fields) {
     return null;

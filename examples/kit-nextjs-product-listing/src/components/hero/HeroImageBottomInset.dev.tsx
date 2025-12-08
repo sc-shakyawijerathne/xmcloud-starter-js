@@ -118,6 +118,8 @@ export const HeroImageBottomInset: React.FC<HeroProps> = (props) => {
               wrapperClass="max-h-[560px] relative w-full aspect-[144/56] before:block before:w-full before:absolute before:-top-[1px] before:left-0 before:right-0 before:h-[1px] before:bg-foreground before:z-10"
               className="absolute aspect-[144/56] w-full object-cover"
               priority={true}
+              loading="eager"
+              fetchPriority="high"
             />
             {/* Banner */}
             {needsBanner && (

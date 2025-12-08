@@ -1,3 +1,5 @@
+'use client';
+
 import { Text as ContentSdkText, Field, useSitecore } from '@sitecore-content-sdk/nextjs';
 import { useEffect, useMemo, useRef, useState } from 'react';
 

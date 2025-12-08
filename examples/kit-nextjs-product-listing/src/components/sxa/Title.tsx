@@ -1,4 +1,5 @@
-import { Link, LinkField, Text, TextField, useSitecore } from '@sitecore-content-sdk/nextjs';
+import { Link, LinkField, Text, TextField } from '@sitecore-content-sdk/nextjs';
+import { ComponentProps } from 'lib/component-props';
 import React, { type JSX } from 'react';
 
 interface Fields {
@@ -30,7 +31,7 @@ interface Fields {
   };
 }
 
-type TitleProps = {
+type TitleProps = ComponentProps & {
   params: { [key: string]: string };
   fields: Fields;
 };
@@ -54,7 +55,7 @@ const ComponentContent = (props: ComponentContentProps) => {
 
 export const Default = (props: TitleProps): JSX.Element => {
   const datasource = props.fields?.data?.datasource || props.fields?.data?.contextItem;
-  const { page } = useSitecore();
+  const { page } = props;
   const { mode } = page;
   const datasourceField: TextField = datasource?.field?.jsonValue as TextField;
   const contextField: TextField = page.layout.sitecore.route?.fields?.pageTitle as TextField;
@@ -74,7 +75,10 @@ export const Default = (props: TitleProps): JSX.Element => {
   }
 
   return (
-    <ComponentContent styles={props.params.styles} id={props.params.RenderingIdentifier}>
+    <ComponentContent
+      styles={props.params.styles || ''}
+      id={props.params.RenderingIdentifier || ''}
+    >
       <>
         {mode.isEditing ? (
           <Text field={titleField} />

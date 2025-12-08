@@ -97,7 +97,7 @@ export const GlobalHeaderCentered: React.FC<GlobalHeaderProps> = (props) => {
           </div>
           <div className="absolute left-1/2 top-1/2 flex w-[112px] -translate-x-1/2 -translate-y-1/2 items-center justify-center [&_.image-container]:mx-auto [&_.image-container]:w-full">
             {!isPageEditing ? (
-              <Link href="/" className="flex items-center justify-center">
+              <Link href="/" className="flex items-center justify-center" aria-label="Home">
                 <ImageWrapper
                   image={logo?.jsonValue}
                   className="w-full object-contain"

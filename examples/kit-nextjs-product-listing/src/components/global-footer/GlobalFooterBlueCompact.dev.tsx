@@ -1,3 +1,5 @@
+'use client';
+
 import { useRef } from 'react';
 import { Text } from '@sitecore-content-sdk/nextjs';
 import { GlobalFooterProps } from '@/components/global-footer/global-footer.props';

@@ -7,7 +7,7 @@ import {
   LinkField,
 } from '@sitecore-content-sdk/nextjs';
 import { ChevronRight } from 'lucide-react';
-import { useI18n } from 'next-localization';
+import { useTranslations } from 'next-intl';
 import { useState, useEffect } from 'react';
 import {
   Carousel,
@@ -44,7 +44,7 @@ const DICTIONARY_KEYS = {
 
 export const Default = (props: ProductPageHeaderProps) => {
   const [selectedColor, setSelectedColor] = useState<Enum | null>(null);
-  const { t } = useI18n();
+  const t = useTranslations();
 
   useEffect(() => {
     if (!selectedColor && props.fields?.Colors?.length > 0) {

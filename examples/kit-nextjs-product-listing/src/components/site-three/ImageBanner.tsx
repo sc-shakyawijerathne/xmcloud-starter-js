@@ -1,5 +1,3 @@
-'use client';
-
 import {
   RichText as ContentSdkRichText,
   Text as ContentSdkText,

@@ -71,7 +71,7 @@ export const GlobalHeaderDefault: React.FC<GlobalHeaderProps> = (props) => {
           <div className="mr-8">
             <div className="flex w-[112px] items-stretch space-x-2 [&_.image-container]:w-full">
               {!isPageEditing ? (
-                <Link href="/" className="" prefetch={false}>
+                <Link href="/" className="" prefetch={false} aria-label="Home">
                   <ImageWrapper
                     image={logo?.jsonValue}
                     className="w-full object-contain"

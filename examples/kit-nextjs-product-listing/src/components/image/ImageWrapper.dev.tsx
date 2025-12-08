@@ -1,3 +1,5 @@
+'use client';
+
 import { useContext } from 'react';
 import { cn } from '@/lib/utils';
 import { ImageField, Image as ContentSdkImage, useSitecore } from '@sitecore-content-sdk/nextjs';

@@ -6,7 +6,7 @@ import {
   Field,
   ImageField,
 } from '@sitecore-content-sdk/nextjs';
-import { useI18n } from 'next-localization';
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
 import { useMemo } from 'react';
@@ -101,7 +101,7 @@ const transformProductData = (products: ProductFields[]) => {
 };
 
 export const Default = (props: ProductComparisonProps) => {
-  const { t } = useI18n();
+  const t = useTranslations();
 
   const formattedProducts = useMemo(
     () => transformProductData(props.fields?.Products || []),

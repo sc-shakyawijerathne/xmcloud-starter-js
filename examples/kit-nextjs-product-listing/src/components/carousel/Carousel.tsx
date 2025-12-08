@@ -1,3 +1,5 @@
+'use client';
+
 /* eslint-disable react-hooks/exhaustive-deps */
 import { ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
 import {

@@ -107,6 +107,8 @@ export const HeroImageRight: React.FC<HeroProps> = (props) => {
               wrapperClass="max-h-[900px] relative w-full aspect-square @md/herowrapper:aspect-auto @md/herowrapper:absolute @md/herowrapper:top-0 @md/herowrapper:right-0 @md/herowrapper:bottom-0 @md/herowrapper:left-0 "
               className="absolute bottom-0 left-0 right-0 top-0 h-full w-full object-cover"
               priority={true}
+              loading="eager"
+              fetchPriority="high"
             />
 
             {/* Banner overlay */}

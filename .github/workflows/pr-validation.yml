@@ -28,37 +28,6 @@ jobs:
           git fetch origin main
           git fetch origin dmz
 
-      - name: Check if PR is based on latest main
-        id: base-check
-        run: |
-          echo "Checking if PR branch is up-to-date with main..."
-
-          # Get the merge base between PR branch and main
-          MERGE_BASE=$(git merge-base HEAD origin/main)
-          MAIN_HEAD=$(git rev-parse origin/main)
-
-          echo "Merge base: $MERGE_BASE"
-          echo "Main HEAD:  $MAIN_HEAD"
-
-          if [ "$MERGE_BASE" != "$MAIN_HEAD" ]; then
-            echo "❌ ERROR: This PR branch is not based on the latest main branch."
-            echo ""
-            echo "Your branch was created from an outdated version of main."
-            echo "This will cause duplicate commits to appear in your PR."
-            echo ""
-            echo "To fix this, rebase your branch onto the latest main:"
-            echo ""
-            echo "  git fetch origin main"
-            echo "  git rebase origin/main"
-            echo "  git push --force-with-lease"
-            echo ""
-            echo "base-check-passed=false" >> $GITHUB_OUTPUT
-            exit 1
-          fi
-
-          echo "✅ PR branch is based on the latest main branch"
-          echo "base-check-passed=true" >> $GITHUB_OUTPUT
-
       - name: Check if PR can be squash merged cleanly
         id: merge-check
         run: |
@@ -325,8 +294,6 @@ jobs:
               const body = `## 🔍 PR Validation Results
 
               ${emoji} **Status:** ${status}
-
-              **Base Branch Check:** ${'${{ steps.base-check.outputs.base-check-passed }}' === 'true' ? '✅ Based on latest main' : '❌ Not based on latest main - rebase required'}
 
               **Merge Check:** ${'${{ steps.merge-check.outputs.merge-check-passed }}' === 'true' ? '✅ Can be squash merged' : '❌ Merge conflicts detected'}
 

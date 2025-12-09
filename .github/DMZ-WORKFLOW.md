@@ -31,7 +31,6 @@ feature branches (developer forks)
 **Triggers**: When a PR is opened or updated targeting `dmz`
 
 **Validates**:
-- ✅ PR branch is based on the **latest `main` HEAD**
 - ✅ PR can be squash merged without conflicts
 - ✅ Linting passes
 - ✅ Formatting is correct
@@ -109,16 +108,15 @@ Timeline:
 Timeline:
 1. Developer A creates feature-a from main (commit A→B→C)
 2. Developer A adds commits D, E
-3. Developer A's PR validation checks: based on latest main? ✅
+3. Developer A's PR is validated and approved
 4. PR is squash merged to dmz as commit F
 5. dmz is manually merged into main (creates merge commit M)
 6. Developer B created feature-b from main at step 1 (has A→B→C)
-7. Developer B's PR validation checks: based on latest main? ❌
-8. PR is REJECTED with clear instructions
-9. Developer B rebases: git rebase origin/main
-10. Now Developer B's branch has A→B→C→F→M→G→H
-11. Developer B's PR validation checks: based on latest main? ✅
-12. Developer B's PR shows only commits G, H ✅
+7. Developer B should rebase onto latest main to get recent changes
+8. Developer B rebases: git rebase origin/main
+9. Now Developer B's branch has A→B→C→F→M→G→H
+10. Developer B's PR is validated
+11. Developer B's PR shows only commits G, H ✅
 ```
 
 ## Developer Workflow
@@ -151,7 +149,6 @@ git push origin feature/my-feature
 1. Go to GitHub and create a PR
 2. **Important**: Set the base branch to `dmz` (not `main`)
 3. The PR validation workflow will automatically check:
-   - ✅ Your branch is based on the latest `main`
    - ✅ No merge conflicts with `dmz`
    - ✅ Linting passes
    - ✅ Formatting is correct
@@ -159,34 +156,14 @@ git push origin feature/my-feature
    - ✅ All starters build successfully
    - ✅ All tests pass
 
-### 4. If Validation Fails: "Not Based on Latest Main"
-
-If you see this error, it means `main` was updated after you created your branch. Fix it:
-
-```bash
-# Fetch the latest main
-git fetch origin main
-
-# Rebase your branch onto the latest main
-git checkout feature/my-feature
-git rebase origin/main
-
-# If there are conflicts, resolve them, then:
-git add .
-git rebase --continue
-
-# Force push (use --force-with-lease for safety)
-git push --force-with-lease origin feature/my-feature
-```
-
-### 5. Merge to `dmz` (Reviewers Only)
+### 4. Merge to `dmz` (Reviewers Only)
 
 Once approved, reviewers will:
 1. **Use "Squash and merge"** (this is required)
 2. Ensure the squash commit message is descriptive
 3. Delete the feature branch after merging
 
-### 6. Manual Merge to Main
+### 5. Manual Merge to Main
 
 After merging to `dmz`:
 1. The DMZ validation workflow runs as a **final gate** (double-checks everything)
@@ -206,7 +183,7 @@ After merging to `dmz`:
 
 This creates a merge commit in `main` that preserves the history from `dmz` while clearly showing when the merge occurred.
 
-### 7. Keep Your Branches Updated
+### 6. Keep Your Branches Updated
 
 If you have a long-running feature branch, regularly update it:
 
@@ -226,7 +203,13 @@ git push --force-with-lease origin feature/my-feature
 
 **Cause**: Your branch was created from an outdated `main` before other PRs were merged.
 
-**Solution**: Rebase your branch onto the latest `main` (see Step 4 above).
+**Solution**: Rebase your branch onto the latest `main`:
+
+```bash
+git fetch origin main
+git rebase origin/main
+git push --force-with-lease origin feature/my-feature
+```
 
 ### Issue: "Merge conflicts with dmz"
 
@@ -416,7 +399,7 @@ npm run type-check
 This workflow uses **defense in depth** with two validation layers:
 
 1. **PR Validation** (before merge to dmz):
-   - Checks if branch is based on latest main
+   - Checks if PR can be squash merged without conflicts
    - Runs lint, format, type-check, build, tests
    - Catches issues early, before they reach dmz
    - Provides fast feedback to developers

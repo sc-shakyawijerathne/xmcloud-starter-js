@@ -27,6 +27,8 @@ import * as RichText from 'src/components/sxa/RichText';
 import * as Promo from 'src/components/sxa/Promo';
 import * as PartialDesignDynamicPlaceholder from 'src/components/sxa/PartialDesignDynamicPlaceholder';
 import * as PageContent from 'src/components/sxa/PageContent';
+import * as NavigationMenuToggleclient from 'src/components/sxa/NavigationMenuToggle.client';
+import * as NavigationListclient from 'src/components/sxa/NavigationList.client';
 import * as Navigation from 'src/components/sxa/Navigation';
 import * as LinkList from 'src/components/sxa/LinkList';
 import * as Image from 'src/components/sxa/Image';
@@ -263,7 +265,9 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['Promo', { ...Promo }],
   ['PartialDesignDynamicPlaceholder', { ...PartialDesignDynamicPlaceholder }],
   ['PageContent', { ...PageContent }],
-  ['Navigation', { ...Navigation, componentType: 'client' }],
+  ['NavigationMenuToggle', { ...NavigationMenuToggleclient }],
+  ['NavigationList', { ...NavigationListclient }],
+  ['Navigation', { ...Navigation }],
   ['LinkList', { ...LinkList, componentType: 'client' }],
   ['Image', { ...Image }],
   ['ContentBlock', { ...ContentBlock }],

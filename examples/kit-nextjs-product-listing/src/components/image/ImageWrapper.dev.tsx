@@ -11,7 +11,6 @@ type ImageWrapperProps = {
   blurDataURL?: string;
   alt?: string;
   wrapperClass?: string;
-  page?: Page;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
 };

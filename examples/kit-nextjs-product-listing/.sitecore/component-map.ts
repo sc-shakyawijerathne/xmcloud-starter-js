@@ -130,6 +130,7 @@ import * as ImageGallery from 'src/components/image-gallery/ImageGallery';
 import * as imagegalleryprops from 'src/components/image-gallery/image-gallery.props';
 import * as nextImageSrcdev from 'src/components/image/nextImageSrc.dev';
 import * as ImageWrapperdev from 'src/components/image/ImageWrapper.dev';
+import * as ImageWrapperclient from 'src/components/image/ImageWrapper.client';
 import * as ImageBlock from 'src/components/image/ImageBlock';
 import * as imageprops from 'src/components/image/image.props';
 import * as imageoptimizationcontext from 'src/components/image/image-optimization.context';
@@ -364,7 +365,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['ImageGallery', { ...ImageGallerydev, ...ImageGallery, componentType: 'client' }],
   ['image-gallery', { ...imagegalleryprops }],
   ['nextImageSrc', { ...nextImageSrcdev }],
-  ['ImageWrapper', { ...ImageWrapperdev }],
+  ['ImageWrapper', { ...ImageWrapperdev, ...ImageWrapperclient }],
   ['ImageBlock', { ...ImageBlock }],
   ['image', { ...imageprops }],
   ['image-optimization', { ...imageoptimizationcontext }],

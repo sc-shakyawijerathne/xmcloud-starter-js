@@ -69,10 +69,15 @@ import * as secondarynavigationprops from 'src/components/secondary-navigation/s
 import * as RichTextBlock from 'src/components/rich-text-block/RichTextBlock';
 import * as richtextblockprops from 'src/components/rich-text-block/rich-text-block.props';
 import * as PromoImageTitlePartialOverlaydev from 'src/components/promo-image/PromoImageTitlePartialOverlay.dev';
+import * as PromoImageTitlePartialOverlayclient from 'src/components/promo-image/PromoImageTitlePartialOverlay.client';
 import * as PromoImageRightdev from 'src/components/promo-image/PromoImageRight.dev';
+import * as PromoImageRightclient from 'src/components/promo-image/PromoImageRight.client';
 import * as PromoImageMiddledev from 'src/components/promo-image/PromoImageMiddle.dev';
+import * as PromoImageMiddleclient from 'src/components/promo-image/PromoImageMiddle.client';
 import * as PromoImageLeftdev from 'src/components/promo-image/PromoImageLeft.dev';
+import * as PromoImageLeftclient from 'src/components/promo-image/PromoImageLeft.client';
 import * as PromoImageDefaultdev from 'src/components/promo-image/PromoImageDefault.dev';
+import * as PromoImageDefaultclient from 'src/components/promo-image/PromoImageDefault.client';
 import * as PromoImage from 'src/components/promo-image/PromoImage';
 import * as promoimageprops from 'src/components/promo-image/promo-image.props';
 import * as PromoBlock from 'src/components/promo-block/PromoBlock';
@@ -92,6 +97,7 @@ import * as productlistingdictionary from 'src/components/product-listing/produc
 import * as portaldev from 'src/components/portal/portal.dev';
 import * as PageHeaderFiftyFiftydev from 'src/components/page-header/PageHeaderFiftyFifty.dev';
 import * as PageHeaderDefaultdev from 'src/components/page-header/PageHeaderDefault.dev';
+import * as PageHeaderDefaultclient from 'src/components/page-header/PageHeaderDefault.client';
 import * as PageHeaderCentereddev from 'src/components/page-header/PageHeaderCentered.dev';
 import * as PageHeaderBlueTextdev from 'src/components/page-header/PageHeaderBlueText.dev';
 import * as PageHeaderBlueBackgrounddev from 'src/components/page-header/PageHeaderBlueBackground.dev';
@@ -158,6 +164,7 @@ import * as HeroImageBottomInsetdev from 'src/components/hero/HeroImageBottomIns
 import * as HeroImageBottomdev from 'src/components/hero/HeroImageBottom.dev';
 import * as HeroImageBackgrounddev from 'src/components/hero/HeroImageBackground.dev';
 import * as HeroDefaultdev from 'src/components/hero/HeroDefault.dev';
+import * as HeroDefaultclient from 'src/components/hero/HeroDefault.client';
 import * as Hero from 'src/components/hero/Hero';
 import * as heroprops from 'src/components/hero/hero.props';
 import * as herodictionary from 'src/components/hero/hero.dictionary';
@@ -307,11 +314,11 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['secondary-navigation', { ...secondarynavigationprops }],
   ['RichTextBlock', { ...RichTextBlock }],
   ['rich-text-block', { ...richtextblockprops }],
-  ['PromoImageTitlePartialOverlay', { ...PromoImageTitlePartialOverlaydev }],
-  ['PromoImageRight', { ...PromoImageRightdev }],
-  ['PromoImageMiddle', { ...PromoImageMiddledev }],
-  ['PromoImageLeft', { ...PromoImageLeftdev }],
-  ['PromoImageDefault', { ...PromoImageDefaultdev }],
+  ['PromoImageTitlePartialOverlay', { ...PromoImageTitlePartialOverlaydev, ...PromoImageTitlePartialOverlayclient }],
+  ['PromoImageRight', { ...PromoImageRightdev, ...PromoImageRightclient }],
+  ['PromoImageMiddle', { ...PromoImageMiddledev, ...PromoImageMiddleclient }],
+  ['PromoImageLeft', { ...PromoImageLeftdev, ...PromoImageLeftclient }],
+  ['PromoImageDefault', { ...PromoImageDefaultdev, ...PromoImageDefaultclient }],
   ['PromoImage', { ...PromoImage }],
   ['promo-image', { ...promoimageprops }],
   ['PromoBlock', { ...PromoBlock }],
@@ -328,7 +335,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['product-listing', { ...productlistingprops, ...productlistingdictionary }],
   ['portal', { ...portaldev }],
   ['PageHeaderFiftyFifty', { ...PageHeaderFiftyFiftydev }],
-  ['PageHeaderDefault', { ...PageHeaderDefaultdev }],
+  ['PageHeaderDefault', { ...PageHeaderDefaultdev, ...PageHeaderDefaultclient }],
   ['PageHeaderCentered', { ...PageHeaderCentereddev }],
   ['PageHeaderBlueText', { ...PageHeaderBlueTextdev }],
   ['PageHeaderBlueBackground', { ...PageHeaderBlueBackgrounddev }],
@@ -392,7 +399,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['HeroImageBottomInset', { ...HeroImageBottomInsetdev }],
   ['HeroImageBottom', { ...HeroImageBottomdev }],
   ['HeroImageBackground', { ...HeroImageBackgrounddev }],
-  ['HeroDefault', { ...HeroDefaultdev }],
+  ['HeroDefault', { ...HeroDefaultdev, ...HeroDefaultclient }],
   ['Hero', { ...Hero, componentType: 'client' }],
   ['hero', { ...heroprops, ...herodictionary }],
   ['GlobalHeaderDefault', { ...GlobalHeaderDefaultdev }],

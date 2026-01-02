@@ -31,6 +31,11 @@ import * as AccordionBlock from 'src/components/site-three/AccordionBlock';
 import * as SearchBox from 'src/components/site-three/non-sitecore/SearchBox';
 import * as MiniCart from 'src/components/site-three/non-sitecore/MiniCart';
 import * as SecondaryNavigation from 'src/components/secondary-navigation/SecondaryNavigation';
+import * as PromoImageTitlePartialOverlayclient from 'src/components/promo-image/PromoImageTitlePartialOverlay.client';
+import * as PromoImageRightclient from 'src/components/promo-image/PromoImageRight.client';
+import * as PromoImageMiddleclient from 'src/components/promo-image/PromoImageMiddle.client';
+import * as PromoImageLeftclient from 'src/components/promo-image/PromoImageLeft.client';
+import * as PromoImageDefaultclient from 'src/components/promo-image/PromoImageDefault.client';
 import * as PromoAnimatedImageRightdev from 'src/components/promo-animated/PromoAnimatedImageRight.dev';
 import * as PromoAnimatedDefaultdev from 'src/components/promo-animated/PromoAnimatedDefault.dev';
 import * as PromoAnimated from 'src/components/promo-animated/PromoAnimated';
@@ -40,7 +45,7 @@ import * as ProductListingDefaultdev from 'src/components/product-listing/Produc
 import * as ProductListing from 'src/components/product-listing/ProductListing';
 import * as portaldev from 'src/components/portal/portal.dev';
 import * as PageHeaderFiftyFiftydev from 'src/components/page-header/PageHeaderFiftyFifty.dev';
-import * as PageHeaderDefaultdev from 'src/components/page-header/PageHeaderDefault.dev';
+import * as PageHeaderDefaultclient from 'src/components/page-header/PageHeaderDefault.client';
 import * as PageHeaderCentereddev from 'src/components/page-header/PageHeaderCentered.dev';
 import * as PageHeaderBlueTextdev from 'src/components/page-header/PageHeaderBlueText.dev';
 import * as PageHeaderBlueBackgrounddev from 'src/components/page-header/PageHeaderBlueBackground.dev';
@@ -70,7 +75,7 @@ import * as HeroImageRightdev from 'src/components/hero/HeroImageRight.dev';
 import * as HeroImageBottomInsetdev from 'src/components/hero/HeroImageBottomInset.dev';
 import * as HeroImageBottomdev from 'src/components/hero/HeroImageBottom.dev';
 import * as HeroImageBackgrounddev from 'src/components/hero/HeroImageBackground.dev';
-import * as HeroDefaultdev from 'src/components/hero/HeroDefault.dev';
+import * as HeroDefaultclient from 'src/components/hero/HeroDefault.client';
 import * as Hero from 'src/components/hero/Hero';
 import * as GlobalHeaderDefaultdev from 'src/components/global-header/GlobalHeaderDefault.dev';
 import * as GlobalHeaderCentereddev from 'src/components/global-header/GlobalHeaderCentered.dev';
@@ -129,6 +134,11 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['SearchBox', { ...SearchBox }],
   ['MiniCart', { ...MiniCart }],
   ['SecondaryNavigation', { ...SecondaryNavigation }],
+  ['PromoImageTitlePartialOverlay', { ...PromoImageTitlePartialOverlayclient }],
+  ['PromoImageRight', { ...PromoImageRightclient }],
+  ['PromoImageMiddle', { ...PromoImageMiddleclient }],
+  ['PromoImageLeft', { ...PromoImageLeftclient }],
+  ['PromoImageDefault', { ...PromoImageDefaultclient }],
   ['PromoAnimatedImageRight', { ...PromoAnimatedImageRightdev }],
   ['PromoAnimatedDefault', { ...PromoAnimatedDefaultdev }],
   ['PromoAnimated', { ...PromoAnimated }],
@@ -138,7 +148,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['ProductListing', { ...ProductListing }],
   ['portal', { ...portaldev }],
   ['PageHeaderFiftyFifty', { ...PageHeaderFiftyFiftydev }],
-  ['PageHeaderDefault', { ...PageHeaderDefaultdev }],
+  ['PageHeaderDefault', { ...PageHeaderDefaultclient }],
   ['PageHeaderCentered', { ...PageHeaderCentereddev }],
   ['PageHeaderBlueText', { ...PageHeaderBlueTextdev }],
   ['PageHeaderBlueBackground', { ...PageHeaderBlueBackgrounddev }],
@@ -167,7 +177,7 @@ export const componentMap = new Map<string, NextjsContentSdkComponent>([
   ['HeroImageBottomInset', { ...HeroImageBottomInsetdev }],
   ['HeroImageBottom', { ...HeroImageBottomdev }],
   ['HeroImageBackground', { ...HeroImageBackgrounddev }],
-  ['HeroDefault', { ...HeroDefaultdev }],
+  ['HeroDefault', { ...HeroDefaultclient }],
   ['Hero', { ...Hero }],
   ['GlobalHeaderDefault', { ...GlobalHeaderDefaultdev }],
   ['GlobalHeaderCentered', { ...GlobalHeaderCentereddev }],

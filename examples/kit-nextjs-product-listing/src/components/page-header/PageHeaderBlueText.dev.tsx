@@ -109,6 +109,7 @@ export const PageHeaderBlueText: React.FC<PageHeaderProps & { isPageEditing: boo
             wrapperClass="@sm/headerwrapper:absolute w-full @sm/headerwrapper:inset-0"
             className="h-full w-full object-cover"
             priority={true}
+            page={props.page}
           />
         </div>
       </section>

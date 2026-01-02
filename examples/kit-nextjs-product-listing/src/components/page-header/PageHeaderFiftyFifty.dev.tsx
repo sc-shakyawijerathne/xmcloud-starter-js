@@ -105,6 +105,7 @@ export const PageHeaderFiftyFifty: React.FC<PageHeaderProps & { isPageEditing: b
                 <ImageWrapper
                   image={imageRequired?.jsonValue}
                   className="h-full w-full object-cover"
+                  page={props.page}
                 />
               </AnimatedSection>
               {/* Page centered Line */}

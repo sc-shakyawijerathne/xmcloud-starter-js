@@ -37,10 +37,12 @@ export const Default = (props: PageHeaderSTProps) => {
           field={props?.fields?.Image1}
           width={1920}
           height={1080}
+          priority={true}
+          fetchPriority="high"
           className="w-full h-full object-cover"
         />
       </div>
-      <div className="relative lg:container w-full lg:flex mx-auto z-20" ref={containerRef}>
+        <div className="relative lg:container w-full lg:flex mx-auto z-20" ref={containerRef}>
         <div className="flex flex-col justify-center mt-10 lg:mt-0 lg:w-2/3 lg:min-h-[50rem] px-4 py-8 lg:p-8 backdrop-blur-[20px] bg-[linear-gradient(136deg,_rgba(255,255,255,0.21)_2.61%,_rgba(255,255,255,0.42)_73.95%)]">
           <div className="lg:max-w-3xl">
             <h1 className="text-primary text-xl lg:text-3xl pb-4 uppercase">
@@ -72,6 +74,7 @@ export const Default = (props: PageHeaderSTProps) => {
             width={1920}
             height={1080}
             priority={true}
+            fetchPriority="high"
             className="aspect-7/4 lg:aspect-auto w-full h-full object-cover"
           />
         </div>
@@ -93,6 +96,8 @@ export const Right = (props: PageHeaderSTProps) => {
           field={props?.fields?.Image1}
           width={1920}
           height={1080}
+          priority={true}
+          fetchPriority="high"
           className="w-full h-full object-cover"
         />
       </div>
@@ -151,6 +156,8 @@ export const Centered = (props: PageHeaderSTProps) => {
           field={props?.fields?.Image1}
           width={1920}
           height={1080}
+          priority={true}
+          fetchPriority="high"
           className="w-full h-full object-cover"
         />
       </div>
@@ -225,6 +232,8 @@ export const SplitScreen = (props: PageHeaderSTProps) => {
             field={props?.fields?.Image1}
             width={1920}
             height={1080}
+            priority={true}
+            fetchPriority="high"
             className="absolute inset-0 w-full h-full object-cover"
           />
           <div className="relative h-full backdrop-blur-[20px] bg-[linear-gradient(136deg,_rgba(255,255,255,0.21)_2.61%,_rgba(255,255,255,0.42)_73.95%)] z-20">

@@ -35,6 +35,10 @@ const accent = IBM_Plex_Mono({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${heading.variable} ${body.variable} ${accent.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://edge-platform.sitecorecloud.io" />
+        <link rel="icon" href="/favicon.ico" />
+      </head>
       <body suppressHydrationWarning>{children}</body>
     </html>
   );

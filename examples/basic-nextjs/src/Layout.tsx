@@ -1,5 +1,5 @@
 import React, { JSX } from "react";
-import { Field, Page, DesignLibraryApp } from "@sitecore-content-sdk/nextjs";
+import { Field, ImageField, Page, DesignLibraryApp } from "@sitecore-content-sdk/nextjs";
 import Scripts from "src/Scripts";
 import SitecoreStyles from "components/content-sdk/SitecoreStyles";
 import { AppPlaceholder } from "@sitecore-content-sdk/nextjs";
@@ -12,6 +12,15 @@ interface LayoutProps {
 export interface RouteFields {
   [key: string]: unknown;
   Title?: Field;
+  metadataTitle?: Field;
+  metadataKeywords?: Field;
+  pageTitle?: Field;
+  metadataDescription?: Field;
+  pageSummary?: Field;
+  ogTitle?: Field;
+  ogDescription?: Field;
+  ogImage?: ImageField;
+  thumbnailImage?: ImageField;
 }
 
 const Layout = ({ page }: LayoutProps): JSX.Element => {

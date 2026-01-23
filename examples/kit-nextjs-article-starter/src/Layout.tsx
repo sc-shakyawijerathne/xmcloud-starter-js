@@ -2,7 +2,6 @@
  * This Layout is needed for Starter Kit.
  */
 import React, { type JSX } from 'react';
-import Head from 'next/head';
 import {
   Page,
   Field,
@@ -50,49 +49,13 @@ export interface RouteFields {
 const Layout = ({ page }: LayoutProps): JSX.Element => {
   const { layout, mode } = page;
   const { route } = layout.sitecore;
-  const fields = route?.fields as RouteFields;
   const mainClassPageEditing = mode.isEditing ? 'editing-mode' : 'prod-mode';
   const classNamesMain = `${mainClassPageEditing} ${body.variable} ${heading.variable} main-layout`;
 
-  const metaTitle =
-    fields?.metadataTitle?.value?.toString() ||
-    fields?.pageTitle?.value?.toString() ||
-    'Page';
-  const metaDescription =
-    fields?.metadataDescription?.value?.toString() ||
-    fields?.pageSummary?.value?.toString() ||
-    '';
-  const metaKeywords = fields?.metadataKeywords?.value?.toString() || '';
-  const ogTitle =
-    fields?.ogTitle?.value?.toString() ||
-    fields?.metadataTitle?.value?.toString() ||
-    fields?.pageTitle?.value?.toString() ||
-    'Page';
-  const ogImage =
-    fields?.ogImage?.value?.src || fields?.thumbnailImage?.value?.src;
-  const ogDescription =
-    fields?.ogDescription?.value?.toString() ||
-    fields?.metadataDescription?.value?.toString() ||
-    fields?.pageSummary?.value?.toString() ||
-    '';
   return (
     <>
       <Scripts />
       <SitecoreStyles layoutData={layout} />
-      <Head>
-        <link rel="preconnect" href="https://edge-platform.sitecorecloud.io" />
-        <title>{metaTitle}</title>
-        {metaDescription && (
-          <meta name="description" content={metaDescription} />
-        )}
-        {metaKeywords && <meta name="keywords" content={metaKeywords} />}
-        <link rel="icon" href="/favicon.ico" />
-        {ogTitle && <meta property="og:title" content={ogTitle} />}
-        {ogDescription && (
-          <meta property="og:description " content={ogDescription} />
-        )}
-        {ogImage && <meta property="og:image " content={ogImage} />}
-      </Head>
       <Providers page={page}>
         {/* root placeholder for the app, which we add components to using route data */}
         <div className={`min-h-screen flex flex-col ${classNamesMain}`}>

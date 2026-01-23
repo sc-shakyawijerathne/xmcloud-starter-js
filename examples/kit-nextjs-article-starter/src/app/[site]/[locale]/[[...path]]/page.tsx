@@ -88,38 +88,41 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const url = `${protocol}://${host}`;
+  const baseUrl = `${protocol}://${host}`;
 
   const { path, site, locale } = await params;
 
+  // Construct the canonical URL with the full path
+  const pathSegment = path?.length ? `/${path.join('/')}` : '';
+  const canonicalUrl = `${baseUrl}/${site}/${locale}${pathSegment}`;
+
   // The same call as for rendering the page. Should be cached by default react behavior
   const page = await client.getPage(path ?? [], { site, locale });
+  const fields = page?.layout.sitecore.route?.fields as RouteFields;
+
+  // Parse keywords from comma-separated string to array
+  const keywordsString = fields?.metadataKeywords?.value?.toString() || '';
+  const keywords = keywordsString
+    ? keywordsString.split(',').map((k: string) => k.trim())
+    : [];
+
   return {
-    title:
-      (
-        page?.layout.sitecore.route?.fields as RouteFields
-      )?.Title?.value?.toString() || 'Page',
+    title: fields?.Title?.value?.toString() || 'Page',
     description:
-      (
-        page?.layout.sitecore.route?.fields as RouteFields
-      )?.ogDescription?.value?.toString() ||
+      fields?.ogDescription?.value?.toString() ||
       'Sitecore Next.js App Router Example',
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
-      title:
-        (
-          page?.layout.sitecore.route?.fields as RouteFields
-        )?.ogTitle?.value?.toString() || 'Page',
+      title: fields?.ogTitle?.value?.toString() || 'Page',
       description:
-        (
-          page?.layout.sitecore.route?.fields as RouteFields
-        )?.ogDescription?.value?.toString() ||
+        fields?.ogDescription?.value?.toString() ||
         'Sitecore Next.js App Router Example',
-      url: url,
+      url: canonicalUrl,
       images:
-        (page?.layout.sitecore.route?.fields as RouteFields)?.ogImage?.value
-          ?.src ||
-        (page?.layout.sitecore.route?.fields as RouteFields)?.thumbnailImage
-          ?.value?.src,
+        fields?.ogImage?.value?.src || fields?.thumbnailImage?.value?.src,
     },
   };
 };

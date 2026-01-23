@@ -81,8 +81,12 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const url = `${protocol}://${host}`;
+  const baseUrl = `${protocol}://${host}`;
   const { path, site, locale } = await params;
+
+  // Construct the canonical URL with the full path
+  const pathSegment = path?.length ? `/${path.join('/')}` : '';
+  const canonicalUrl = `${baseUrl}/${site}/${locale}${pathSegment}`;
 
   // The same call as for rendering the page. Should be cached by default react behavior
   const page = await client.getPage(path ?? [], { site, locale });
@@ -96,14 +100,24 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const ogTitle = routeFields?.ogTitle?.value?.toString();
   const ogImageSrc = routeFields?.ogImage?.value?.src;
 
+  // Parse keywords from comma-separated string to array
+  const keywordsString = routeFields?.metadataKeywords?.value?.toString() || '';
+  const keywords = keywordsString
+    ? keywordsString.split(',').map((k: string) => k.trim())
+    : [];
+
   return {
     title: metadataTitle || pageTitle || 'Page',
     description: ogDescription || description || 'SYNC',
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
       title: ogTitle || 'Page',
       type: 'website',
       description: ogDescription || description || 'SYNC',
-      url: url,
+      url: canonicalUrl,
       images:
         ogImageSrc ||
         'https://edge.sitecorecloud.io/sitecoresaa60dc-chahcontentabf6-maina179-91b6/media/Feature/JSS-Experience-Accelerator/Basic-Site/banner-image.jpg?h=2001&iar=0&w=3000',

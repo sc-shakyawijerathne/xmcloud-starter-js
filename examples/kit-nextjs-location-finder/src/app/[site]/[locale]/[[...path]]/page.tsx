@@ -82,34 +82,37 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const url = `${protocol}://${host}`;
+  const baseUrl = `${protocol}://${host}`;
 
   const { site, locale, path } = await params;
+
+  // Construct the canonical URL with the full path
+  const pathSegment = path?.length ? `/${path.join('/')}` : '';
+  const canonicalUrl = `${baseUrl}/${site}/${locale}${pathSegment}`;
+
   const page = await client.getPage(path ?? [], { site, locale });
+  const fields = page?.layout.sitecore.route?.fields as RouteFields;
+
+  // Parse keywords from comma-separated string to array
+  const keywordsString = fields?.metadataKeywords?.value?.toString() || '';
+  const keywords = keywordsString
+    ? keywordsString.split(',').map((k: string) => k.trim())
+    : [];
+
   return {
-    title:
-      (
-        page?.layout.sitecore.route?.fields as RouteFields
-      )?.ogTitle?.value?.toString() || 'Page',
-    type: 'website',
+    title: fields?.ogTitle?.value?.toString() || 'Page',
     description:
-      (
-        page?.layout.sitecore.route?.fields as RouteFields
-      )?.ogDescription?.value?.toString() || 'Sitecore Next.js Alaris Example',
+      fields?.ogDescription?.value?.toString() || 'Sitecore Next.js Alaris Example',
+    keywords,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     openGraph: {
-      title:
-        (
-          page?.layout.sitecore.route?.fields as RouteFields
-        )?.Title?.value?.toString() || 'Page',
+      title: fields?.Title?.value?.toString() || 'Page',
       description:
-        (
-          page?.layout.sitecore.route?.fields as RouteFields
-        )?.ogDescription?.value?.toString() ||
-        'Sitecore Next.js Alaris Example',
-      url: url,
-      images:
-        (page?.layout.sitecore.route?.fields as RouteFields)?.ogImage?.value
-          ?.src || undefined,
+        fields?.ogDescription?.value?.toString() || 'Sitecore Next.js Alaris Example',
+      url: canonicalUrl,
+      images: fields?.ogImage?.value?.src || undefined,
     },
   };
 };

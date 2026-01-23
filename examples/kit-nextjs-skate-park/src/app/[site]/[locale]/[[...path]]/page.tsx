@@ -93,9 +93,10 @@ export const generateMetadata = async ({ params }: PageProps) => {
 
   const { path, site, locale } = await params;
 
-  // Construct the canonical URL with the full path
+  // Construct the canonical URL using the public-facing path (what users see in browser)
+  // The middleware rewrites / -> /site/locale internally, but canonical should match the browser URL
   const pathSegment = path?.length ? `/${path.join("/")}` : "";
-  const canonicalUrl = `${baseUrl}/${site}/${locale}${pathSegment}`;
+  const canonicalUrl = `${baseUrl}${pathSegment}`;
 
   // The same call as for rendering the page. Should be cached by default react behavior
   const page = await client.getPage(path ?? [], { site, locale });

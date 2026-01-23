@@ -48,12 +48,13 @@ export interface RouteFields {
 }
 
 const Layout = ({ page }: LayoutProps): JSX.Element => {
-  const { layout, mode } = page;
+  const { layout, mode, siteName } = page;
   const { route } = layout.sitecore;
   const fields = route?.fields as RouteFields;
   const mainClassPageEditing = mode.isEditing ? 'editing-mode' : 'prod-mode';
   const classNamesMain = `${mainClassPageEditing} ${body.variable} ${heading.variable} main-layout`;
 
+  // Basic SEO metadata
   const metaTitle =
     fields?.metadataTitle?.value?.toString() ||
     fields?.pageTitle?.value?.toString() ||
@@ -63,18 +64,17 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
     fields?.pageSummary?.value?.toString() ||
     '';
   const metaKeywords = fields?.metadataKeywords?.value?.toString() || '';
+
+  // OpenGraph metadata (uses existing Sitecore fields)
   const ogTitle =
     fields?.ogTitle?.value?.toString() ||
-    fields?.metadataTitle?.value?.toString() ||
-    fields?.pageTitle?.value?.toString() ||
-    'Page';
-  const ogImage =
-    fields?.ogImage?.value?.src || fields?.thumbnailImage?.value?.src;
+    metaTitle;
   const ogDescription =
     fields?.ogDescription?.value?.toString() ||
-    fields?.metadataDescription?.value?.toString() ||
-    fields?.pageSummary?.value?.toString() ||
-    '';
+    metaDescription;
+  const ogImage =
+    fields?.ogImage?.value?.src || fields?.thumbnailImage?.value?.src || '';
+
   return (
     <>
       <Scripts />
@@ -87,11 +87,19 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
         )}
         {metaKeywords && <meta name="keywords" content={metaKeywords} />}
         <link rel="icon" href="/favicon.ico" />
+
+        {/* OpenGraph meta tags */}
+        <meta property="og:type" content="website" />
         {ogTitle && <meta property="og:title" content={ogTitle} />}
-        {ogDescription && (
-          <meta property="og:description " content={ogDescription} />
-        )}
-        {ogImage && <meta property="og:image " content={ogImage} />}
+        {ogDescription && <meta property="og:description" content={ogDescription} />}
+        {ogImage && <meta property="og:image" content={ogImage} />}
+        {siteName && <meta property="og:site_name" content={siteName} />}
+
+        {/* Twitter Card meta tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        {ogTitle && <meta name="twitter:title" content={ogTitle} />}
+        {ogDescription && <meta name="twitter:description" content={ogDescription} />}
+        {ogImage && <meta name="twitter:image" content={ogImage} />}
       </Head>
       <Providers page={page}>
         {/* root placeholder for the app, which we add components to using route data */}

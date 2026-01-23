@@ -187,18 +187,17 @@ SharedFields:
             Write-Verbose "Update home page fields"
             $title = "Solterra & Co."
             $shortTitle = "Solterra & Co."
-    
+            $description = "Discover wellness, lifestyle, and editorial content that inspires your everyday journey with Solterra & Co."
             $item."pageTitle" = $title
             $item."pageShortTitle" = $shortTitle
             $item."pageHeaderTitle" = $shortTitle
-            $item."pageSummary" = $title
-    
+            $item."pageSummary" = $description
             $item."metadataTitle" = $title
-            $item."metadataDescription" = $title
-            $item."metadataKeywords" = "Alaris, electric, future"
+            $item."metadataDescription" = $description
+            $item."metadataKeywords" = "Solterra & Co., wellness, editorial, lifestyle"
             $item."ogTitle" = $title
-            $item."ogDescription" = $title
-            
+            $item."ogDescription" = $description
+            $item."ogImage" = "<image mediaid=`"{2F66D4F8-7433-4AD1-B88F-647416EF114D}`" />"
             Write-Verbose "Update nagivation links"
             $aboutUs = Get-Item "$sitePath/Presentation/Partial Designs/Global/Header/Data/Global Header/About Us"
             Update-LinkField -Item $aboutUs -FieldName "link" -TargetItem $item

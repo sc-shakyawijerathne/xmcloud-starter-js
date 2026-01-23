@@ -1,9 +1,23 @@
 import Link from 'next/link';
+import { Metadata } from 'next';
 import client from 'lib/sitecore-client';
 import scConfig from 'sitecore.config';
 import { ErrorPage } from '@sitecore-content-sdk/nextjs';
 import Layout from 'src/Layout';
 import Providers from 'src/Providers';
+
+// Metadata for 404 Not Found page
+export const metadata: Metadata = {
+  title: 'Page Not Found',
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
+};
 
 export default async function NotFound() {
   // Try to fetch Sitecore 404 page for default site

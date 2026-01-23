@@ -104,6 +104,17 @@ This repository uses a **DMZ git workflow** to ensure the `main` branch is alway
 
 🔒 **[Branch Protection Setup Guide](.github/BRANCH-PROTECTION-SETUP.md)** - Configure GitHub branch protection rules to enforce the workflow.
 
+## SEO & AI Crawler Access
+
+This repository is configured to allow AI crawlers and search engines to index your content for maximum discoverability. All starter applications include:
+
+- **AI Crawler Support**: Explicit allowances for GPTBot (OpenAI), ClaudeBot (Anthropic), PerplexityBot, and other AI crawlers
+- **Search Engine Support**: Proper configuration for Googlebot, Bingbot, and other major search engines
+- **Dynamic Sitemap**: Automatically generated sitemap.xml linked in robots.txt
+- **Error Page Handling**: 404 pages include noindex meta tags to prevent indexing of error pages
+
+📖 **[Read the AI Crawler Access Guide](docs/AI_CRAWLER_ACCESS.md)** for detailed configuration instructions, hosting provider setup (Vercel, Azure, Netlify), and how to restrict access if needed.
+
 ## AI-Assisted Development
 
 This repository includes comprehensive AI guidance files to help maintain consistent code quality and follow Sitecore XM Cloud best practices across all starter applications:

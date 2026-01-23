@@ -86,10 +86,9 @@ export const generateMetadata = async ({ params }: PageProps) => {
 
   const { site, locale, path } = await params;
 
-  // Construct the canonical URL using the public-facing path (what users see in browser)
-  // The middleware rewrites / -> /site/locale internally, but canonical should match the browser URL
+  // Construct the canonical URL with the full path
   const pathSegment = path?.length ? `/${path.join('/')}` : '';
-  const canonicalUrl = `${baseUrl}${pathSegment}`;
+  const canonicalUrl = `${baseUrl}/${site}/${locale}${pathSegment}`;
 
   const page = await client.getPage(path ?? [], { site, locale });
   const fields = page?.layout.sitecore.route?.fields as RouteFields;

@@ -94,32 +94,46 @@ export const generateMetadata = async ({ params }: PageProps) => {
 
   // The same call as for rendering the page. Should be cached by default react behavior
   const page = await client.getPage(path ?? [], { site, locale });
+
+  // Cast route fields once to avoid repeated casting
+  const routeFields = (page?.layout.sitecore.route?.fields ?? {}) as RouteFields;
+
+  // Extract metadata values with fallbacks
+  const metadataTitle = routeFields?.metadataTitle?.value?.toString();
+  const pageTitle = routeFields?.pageTitle?.value?.toString();
+  const title = routeFields?.Title?.value?.toString();
+  const metadataDescription = routeFields?.metadataDescription?.value?.toString();
+  const pageSummary = routeFields?.pageSummary?.value?.toString();
+  const metadataKeywords = routeFields?.metadataKeywords?.value?.toString();
+  const ogTitle = routeFields?.ogTitle?.value?.toString();
+  const ogDescription = routeFields?.ogDescription?.value?.toString();
+  const ogImageSrc = routeFields?.ogImage?.value?.src;
+  const thumbnailImageSrc = routeFields?.thumbnailImage?.value?.src;
+
+  // Build metadata with proper fallbacks
+  const resolvedTitle = metadataTitle || pageTitle || title || 'Page';
+  const resolvedDescription = metadataDescription || pageSummary || ogDescription || 'Sitecore Next.js App Router Example';
+  const resolvedOgTitle = ogTitle || resolvedTitle;
+  const resolvedOgDescription = ogDescription || resolvedDescription;
+  const resolvedImage = ogImageSrc || thumbnailImageSrc;
+
   return {
-    title:
-      (
-        page?.layout.sitecore.route?.fields as RouteFields
-      )?.Title?.value?.toString() || 'Page',
-    description:
-      (
-        page?.layout.sitecore.route?.fields as RouteFields
-      )?.ogDescription?.value?.toString() ||
-      'Sitecore Next.js App Router Example',
+    title: resolvedTitle,
+    description: resolvedDescription,
+    keywords: metadataKeywords || undefined,
     openGraph: {
-      title:
-        (
-          page?.layout.sitecore.route?.fields as RouteFields
-        )?.ogTitle?.value?.toString() || 'Page',
-      description:
-        (
-          page?.layout.sitecore.route?.fields as RouteFields
-        )?.ogDescription?.value?.toString() ||
-        'Sitecore Next.js App Router Example',
+      type: 'website',
+      title: resolvedOgTitle,
+      description: resolvedOgDescription,
       url: url,
-      images:
-        (page?.layout.sitecore.route?.fields as RouteFields)?.ogImage?.value
-          ?.src ||
-        (page?.layout.sitecore.route?.fields as RouteFields)?.thumbnailImage
-          ?.value?.src,
+      siteName: site,
+      images: resolvedImage || undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: resolvedOgTitle,
+      description: resolvedOgDescription,
+      images: resolvedImage || undefined,
     },
   };
 };

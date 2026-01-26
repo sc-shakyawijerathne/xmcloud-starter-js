@@ -23,6 +23,7 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
     <>
       <Scripts />
       <SitecoreStyles layoutData={layout} />
+
       {/* root placeholder for the app, which we add components to using route data */}
       <div className={mainClassPageEditing}>
         {mode.isDesignLibrary ? (

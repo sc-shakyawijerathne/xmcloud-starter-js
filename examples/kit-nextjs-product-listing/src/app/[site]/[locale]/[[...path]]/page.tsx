@@ -89,24 +89,41 @@ export const generateMetadata = async ({ params }: PageProps) => {
   // Cast route fields once to the expected RouteFields shape to avoid accessing unknown {}
   const routeFields = (page?.layout.sitecore.route?.fields ?? {}) as RouteFields;
 
+  // Extract metadata values with fallbacks
   const metadataTitle = routeFields?.metadataTitle?.value?.toString();
   const pageTitle = routeFields?.pageTitle?.value?.toString();
-  const ogDescription = routeFields?.ogDescription?.value?.toString();
-  const description = routeFields?.metadataDescription?.value?.toString();
+  const metadataDescription = routeFields?.metadataDescription?.value?.toString();
+  const pageSummary = routeFields?.pageSummary?.value?.toString();
+  const metadataKeywords = routeFields?.metadataKeywords?.value?.toString();
   const ogTitle = routeFields?.ogTitle?.value?.toString();
+  const ogDescription = routeFields?.ogDescription?.value?.toString();
   const ogImageSrc = routeFields?.ogImage?.value?.src;
 
+  // Build metadata with proper fallbacks
+  const resolvedTitle = metadataTitle || pageTitle || 'Page';
+  const resolvedDescription = metadataDescription || pageSummary || ogDescription || 'SYNC';
+  const resolvedOgTitle = ogTitle || resolvedTitle;
+  const resolvedOgDescription = ogDescription || resolvedDescription;
+
   return {
-    title: metadataTitle || pageTitle || 'Page',
-    description: ogDescription || description || 'SYNC',
+    title: resolvedTitle,
+    description: resolvedDescription,
+    keywords: metadataKeywords || undefined,
     openGraph: {
-      title: ogTitle || 'Page',
       type: 'website',
-      description: ogDescription || description || 'SYNC',
+      title: resolvedOgTitle,
+      description: resolvedOgDescription,
       url: url,
+      siteName: site,
       images:
         ogImageSrc ||
         'https://edge.sitecorecloud.io/sitecoresaa60dc-chahcontentabf6-maina179-91b6/media/Feature/JSS-Experience-Accelerator/Basic-Site/banner-image.jpg?h=2001&iar=0&w=3000',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: resolvedOgTitle,
+      description: resolvedOgDescription,
+      images: ogImageSrc || undefined,
     },
   };
 };

@@ -2,13 +2,12 @@
  * This Layout is needed for Starter Kit.
  */
 import React, { type JSX } from 'react';
-import { Field, ImageField, Page, AppPlaceholder } from '@sitecore-content-sdk/nextjs';
+import { Field, ImageField, Page, AppPlaceholder, DesignLibraryApp } from '@sitecore-content-sdk/nextjs';
 import Scripts from 'src/Scripts';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import Providers from 'src/Providers';
 import { IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
 import localFont from 'next/font/local';
-import { DesignLibraryApp } from '@sitecore-content-sdk/nextjs';
 import componentMap from '.sitecore/component-map';
 
 const heading = localFont({

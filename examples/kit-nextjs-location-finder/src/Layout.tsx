@@ -4,12 +4,12 @@ import {
   ImageField,
   Page,
   AppPlaceholder,
+  DesignLibraryApp,
 } from '@sitecore-content-sdk/nextjs';
 import Scripts from 'src/Scripts';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Sora, Roboto } from 'next/font/google';
 import SitecoreStyles from 'components/content-sdk/SitecoreStyles';
-import { DesignLibraryApp } from '@sitecore-content-sdk/nextjs';
 import componentMap from '.sitecore/component-map';
 import Providers from './Providers';
 
@@ -33,6 +33,7 @@ interface LayoutProps {
 
 export interface RouteFields {
   [key: string]: unknown;
+  Title?: Field;
   metadataTitle?: Field;
   metadataKeywords?: Field;
   pageTitle?: Field;
@@ -42,7 +43,6 @@ export interface RouteFields {
   ogDescription?: Field;
   ogImage?: ImageField;
   thumbnailImage?: ImageField;
-  Title?: Field;
 }
 
 const Layout = ({ page }: LayoutProps): JSX.Element => {

@@ -1,4 +1,4 @@
----
+﻿---
 ID: "ef9b8d7d-d8e4-4201-80c9-f6f640ba5dd2"
 Parent: "4ff2646c-2b0f-428f-b9a0-d6ea531de713"
 Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
@@ -198,7 +198,7 @@ SharedFields:
             $item."ogTitle" = $title
             $item."ogDescription" = $description
             # Get the ogImage media item by path (created by Add-SampleImages)
-            $ogImagePath = "master:/sitecore/media library/Project/$($siteCollection.Name)/$($Site.Name)/Sample Media/Images/woman in sand"
+            $ogImagePath = "master:/sitecore/media library/Project/$($siteCollection.Name)/$($Site.Name)/Sample Media/Images/Yoga Woman"
             $ogImageItem = Get-Item -Path $ogImagePath -ErrorAction SilentlyContinue
             if ($ogImageItem) {
                 $item."ogImage" = "<image mediaid=`"$($ogImageItem.ID)`" />"

@@ -136,5 +136,11 @@ export const generateMetadata = async ({ params }: PageProps) => {
       description: resolvedOgDescription,
       images: resolvedImage || undefined,
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: resolvedOgTitle,
+      description: resolvedOgDescription,
+      images: ogImageSrc || undefined,
+    },
   };
 };

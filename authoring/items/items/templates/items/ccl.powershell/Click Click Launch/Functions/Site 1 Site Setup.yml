@@ -197,7 +197,7 @@ SharedFields:
             $item."metadataKeywords" = "Solterra & Co., wellness, editorial, lifestyle"
             $item."ogTitle" = $title
             $item."ogDescription" = $description
-            $item."ogImage" = "<image mediaid=`"{2F66D4F8-7433-4AD1-B88F-647416EF114D}`" />"
+            $item."ogImage" = "<image mediaid=`"{FE035519-6AA1-4D43-90EE-02CC590C3430}`" />"
             Write-Verbose "Update nagivation links"
             $aboutUs = Get-Item "$sitePath/Presentation/Partial Designs/Global/Header/Data/Global Header/About Us"
             Update-LinkField -Item $aboutUs -FieldName "link" -TargetItem $item

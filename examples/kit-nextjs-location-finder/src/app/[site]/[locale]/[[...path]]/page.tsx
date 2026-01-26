@@ -82,7 +82,7 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const url = `${protocol}://${host}`;
+  const baseUrl = `${protocol}://${host}`;
 
   const { site, locale, path } = await params;
   const page = await client.getPage(path ?? [], { site, locale });
@@ -107,7 +107,19 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const resolvedDescription = metadataDescription || pageSummary || ogDescription || 'Sitecore Next.js Alaris Example';
   const resolvedOgTitle = ogTitle || resolvedTitle;
   const resolvedOgDescription = ogDescription || resolvedDescription;
-  const resolvedImage = ogImageSrc || thumbnailImageSrc;
+
+  // Ensure image URL is absolute (OpenGraph requires absolute URLs)
+  const getAbsoluteImageUrl = (src: string | undefined): string | undefined => {
+    if (!src) return undefined;
+    // Already absolute URL
+    if (src.startsWith('http://') || src.startsWith('https://')) {
+      return src;
+    }
+    // Relative URL - prepend base URL
+    return `${baseUrl}${src.startsWith('/') ? '' : '/'}${src}`;
+  };
+
+  const resolvedImage = getAbsoluteImageUrl(ogImageSrc) || getAbsoluteImageUrl(thumbnailImageSrc);
 
   return {
     title: resolvedTitle,
@@ -117,7 +129,7 @@ export const generateMetadata = async ({ params }: PageProps) => {
       type: 'website',
       title: resolvedOgTitle,
       description: resolvedOgDescription,
-      url: url,
+      url: baseUrl,
       siteName: site,
       images: resolvedImage || undefined,
     },

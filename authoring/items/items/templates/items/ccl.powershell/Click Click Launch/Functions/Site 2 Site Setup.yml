@@ -315,7 +315,7 @@ SharedFields:
             $item."metadataKeywords" = "Alaris, electric vehicles, EV, sustainable cars, future mobility"
             $item."ogTitle" = $title
             $item."ogDescription" = $description
-            $item."ogImage" = "<image mediaid=`"{EB9CF603-F5F3-46D0-B42D-9BB3B4F17CC3}`" />"
+            $item."ogImage" = "<image mediaid=`"{FEE12145-DBFB-4182-8959-54DA0DDA043B}`" />"
             # Add Promo variants
             $promoVariant = Get-Item -Path "$sitePath/Presentation/Headless Variants/Promo" -Language $Site.Language
             $imageLeftVariant = New-Item -Parent $promoVariant -Name "ImageLeft" -ItemType "{4D50CDAE-C2D9-4DE8-B080-8F992BFB1B55}"

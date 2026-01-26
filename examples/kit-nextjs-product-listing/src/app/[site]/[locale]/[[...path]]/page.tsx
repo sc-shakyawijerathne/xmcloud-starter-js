@@ -81,7 +81,7 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const url = `${protocol}://${host}`;
+  const baseUrl = `${protocol}://${host}`;
   const { path, site, locale } = await params;
 
   // The same call as for rendering the page. Should be cached by default react behavior
@@ -105,6 +105,19 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const resolvedOgTitle = ogTitle || resolvedTitle;
   const resolvedOgDescription = ogDescription || resolvedDescription;
 
+  // Ensure image URL is absolute (OpenGraph requires absolute URLs)
+  const getAbsoluteImageUrl = (src: string | undefined): string | undefined => {
+    if (!src) return undefined;
+    // Already absolute URL
+    if (src.startsWith('http://') || src.startsWith('https://')) {
+      return src;
+    }
+    // Relative URL - prepend base URL
+    return `${baseUrl}${src.startsWith('/') ? '' : '/'}${src}`;
+  };
+
+  const resolvedImage = getAbsoluteImageUrl(ogImageSrc);
+
   return {
     title: resolvedTitle,
     description: resolvedDescription,
@@ -113,17 +126,15 @@ export const generateMetadata = async ({ params }: PageProps) => {
       type: 'website',
       title: resolvedOgTitle,
       description: resolvedOgDescription,
-      url: url,
+      url: baseUrl,
       siteName: site,
-      images:
-        ogImageSrc ||
-        'https://edge.sitecorecloud.io/sitecoresaa60dc-chahcontentabf6-maina179-91b6/media/Feature/JSS-Experience-Accelerator/Basic-Site/banner-image.jpg?h=2001&iar=0&w=3000',
+      images: resolvedImage || undefined,
     },
     twitter: {
       card: 'summary_large_image',
       title: resolvedOgTitle,
       description: resolvedOgDescription,
-      images: ogImageSrc || undefined,
+      images: resolvedImage || undefined,
     },
   };
 };

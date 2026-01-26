@@ -315,7 +315,12 @@ SharedFields:
             $item."metadataKeywords" = "Alaris, electric vehicles, EV, sustainable cars, future mobility"
             $item."ogTitle" = $title
             $item."ogDescription" = $description
-            $item."ogImage" = "<image mediaid=`"{FEE12145-DBFB-4182-8959-54DA0DDA043B}`" />"
+            # Get the ogImage media item by path (created by Add-SampleImages)
+            $ogImagePath = "master:/sitecore/media library/Project/$($siteCollection.Name)/$($Site.Name)/Sample Media/Images/Test Drive Promo"
+            $ogImageItem = Get-Item -Path $ogImagePath -ErrorAction SilentlyContinue
+            if ($ogImageItem) {
+                $item."ogImage" = "<image mediaid=`"$($ogImageItem.ID)`" />"
+            }
             # Add Promo variants
             $promoVariant = Get-Item -Path "$sitePath/Presentation/Headless Variants/Promo" -Language $Site.Language
             $imageLeftVariant = New-Item -Parent $promoVariant -Name "ImageLeft" -ItemType "{4D50CDAE-C2D9-4DE8-B080-8F992BFB1B55}"

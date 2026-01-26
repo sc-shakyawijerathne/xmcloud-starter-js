@@ -215,7 +215,12 @@ SharedFields:
             $item."metadataKeywords" = "SYNC, audio equipment, speakers, headphones, premium sound, audiophile"
             $item."ogTitle" = $title
             $item."ogDescription" = $description
-            $item."ogImage" = "<image mediaid=`"{CA5665B2-2D94-4CF9-A04C-DA2F059263CD}`" />"
+            # Get the ogImage media item by path (created by Add-SampleImages)
+            $ogImagePath = "master:/sitecore/media library/Project/$($siteCollection.Name)/$($Site.Name)/Sample Media/Images/woman with headphones"
+            $ogImageItem = Get-Item -Path $ogImagePath -ErrorAction SilentlyContinue
+            if ($ogImageItem) {
+                $item."ogImage" = "<image mediaid=`"$($ogImageItem.ID)`" />"
+            }
             Write-Verbose "Create dictionary items"
             $dictionaryRoot = Get-Item -Path "$sitePath/Dictionary" -Language $Site.Language
             $dictionaryBranchTemplate = Get-Item -Path "/sitecore/templates/Branches/Project/click-click-launch/SYNC/Add Dictionary Items" -Language $Site.Language

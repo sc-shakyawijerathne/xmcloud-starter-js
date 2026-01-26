@@ -1,4 +1,4 @@
-﻿---
+---
 ID: "f067e471-7481-4db7-944d-9c3a1cf5d0c0"
 Parent: "4ff2646c-2b0f-428f-b9a0-d6ea531de713"
 Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
@@ -215,7 +215,7 @@ SharedFields:
             $item."metadataKeywords" = "SYNC, audio equipment, speakers, headphones, premium sound, audiophile"
             $item."ogTitle" = $title
             $item."ogDescription" = $description
-            $item."ogImage" = "<image mediaid=`"{A5F348DC-6BA3-459F-840C-56B194EEC53E}`" />"
+            $item."ogImage" = "<image mediaid=`"{5977A6A5-D5D4-45BD-ADD5-0E7E629162FD}`" />"
             Write-Verbose "Create dictionary items"
             $dictionaryRoot = Get-Item -Path "$sitePath/Dictionary" -Language $Site.Language
             $dictionaryBranchTemplate = Get-Item -Path "/sitecore/templates/Branches/Project/click-click-launch/SYNC/Add Dictionary Items" -Language $Site.Language

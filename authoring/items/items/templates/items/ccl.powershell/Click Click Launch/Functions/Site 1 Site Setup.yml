@@ -1,4 +1,4 @@
-﻿---
+---
 ID: "ef9b8d7d-d8e4-4201-80c9-f6f640ba5dd2"
 Parent: "4ff2646c-2b0f-428f-b9a0-d6ea531de713"
 Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
@@ -197,7 +197,7 @@ SharedFields:
             $item."metadataKeywords" = "Solterra & Co., wellness, editorial, lifestyle"
             $item."ogTitle" = $title
             $item."ogDescription" = $description
-            $item."ogImage" = "<image mediaid=`"{2F66D4F8-7433-4AD1-B88F-647416EF114D}`" />"
+            $item."ogImage" = "<image mediaid=`"{B229B500-1CAB-40E4-9989-496FDEE77286}`" />"
             Write-Verbose "Update nagivation links"
             $aboutUs = Get-Item "$sitePath/Presentation/Partial Designs/Global/Header/Data/Global Header/About Us"
             Update-LinkField -Item $aboutUs -FieldName "link" -TargetItem $item

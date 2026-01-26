@@ -197,12 +197,7 @@ SharedFields:
             $item."metadataKeywords" = "Solterra & Co., wellness, editorial, lifestyle"
             $item."ogTitle" = $title
             $item."ogDescription" = $description
-            # Get the ogImage media item by path (created by Add-SampleImages)
-            $ogImagePath = "master:/sitecore/media library/Project/$($siteCollection.Name)/$($Site.Name)/Sample Media/woman in sand"
-            $ogImageItem = Get-Item -Path $ogImagePath -ErrorAction SilentlyContinue
-            if ($ogImageItem) {
-                $item."ogImage" = "<image mediaid=`"$($ogImageItem.ID)`" />"
-            }
+            $item."ogImage" = "<image mediaid=`"{B229B500-1CAB-40E4-9989-496FDEE77286}`" />"
             Write-Verbose "Update nagivation links"
             $aboutUs = Get-Item "$sitePath/Presentation/Partial Designs/Global/Header/Data/Global Header/About Us"
             Update-LinkField -Item $aboutUs -FieldName "link" -TargetItem $item

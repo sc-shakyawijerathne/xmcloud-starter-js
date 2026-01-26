@@ -1,4 +1,4 @@
-﻿---
+---
 ID: "46d05c1b-9d19-4e26-80d1-38e41ff72cbb"
 Parent: "4ff2646c-2b0f-428f-b9a0-d6ea531de713"
 Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
@@ -315,12 +315,7 @@ SharedFields:
             $item."metadataKeywords" = "Alaris, electric vehicles, EV, sustainable cars, future mobility"
             $item."ogTitle" = $title
             $item."ogDescription" = $description
-            # Get the ogImage media item by path (created by Add-SampleImages)
-            $ogImagePath = "master:/sitecore/media library/Project/$($siteCollection.Name)/$($Site.Name)/Sample Media/Images/Test Drive Promo"
-            $ogImageItem = Get-Item -Path $ogImagePath -ErrorAction SilentlyContinue
-            if ($ogImageItem) {
-                $item."ogImage" = "<image mediaid=`"$($ogImageItem.ID)`" />"
-            }
+            $item."ogImage" = "<image mediaid=`"{34DE6E63-EE15-4D55-AEEA-C5600D7E7EB8}`" />"
             # Add Promo variants
             $promoVariant = Get-Item -Path "$sitePath/Presentation/Headless Variants/Promo" -Language $Site.Language
             $imageLeftVariant = New-Item -Parent $promoVariant -Name "ImageLeft" -ItemType "{4D50CDAE-C2D9-4DE8-B080-8F992BFB1B55}"

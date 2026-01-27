@@ -115,7 +115,7 @@ export const generateMetadata = async ({ params }: PageProps) => {
       type: 'website',
       title: resolvedOgTitle,
       description: resolvedOgDescription,
-      url: baseUrl,
+      url: url,
       siteName: site,
       images: resolvedImage || undefined,
     },

@@ -111,7 +111,13 @@ export const generateStaticParams = async () => {
   return [];
 };
 
-// Metadata fields for the page.
+/**
+ * Generates metadata for the page including Open Graph and Twitter Card tags.
+ * These tags enable rich previews when shared on social platforms and help
+ * generative AI engines understand page context for ranking and snippet generation.
+ * @param {PageProps} params - Page parameters including path, site, and locale
+ * @returns {Promise<Metadata>} Next.js metadata object with OG and Twitter card tags
+ */
 export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host');
@@ -127,31 +133,71 @@ export const generateMetadata = async ({ params }: PageProps) => {
 
   // The same call as for rendering the page. Should be cached by default react behavior
   const page = await client.getPage(path ?? [], { site, locale });
-  const fields = page?.layout.sitecore.route?.fields as RouteFields;
 
-  // Parse keywords from comma-separated string to array
-  const keywordsString = fields?.metadataKeywords?.value?.toString() || '';
-  const keywords = keywordsString
-    ? keywordsString.split(',').map((k: string) => k.trim())
-    : [];
+  // Cast route fields once to avoid repeated type assertions
+  const routeFields = (page?.layout.sitecore.route?.fields ?? {}) as RouteFields;
+
+  // Extract metadata values with fallback chain
+  const metadataTitle =
+    routeFields?.metadataTitle?.value?.toString() ||
+    routeFields?.pageTitle?.value?.toString() ||
+    routeFields?.Title?.value?.toString() ||
+    'Page';
+
+  const metadataDescription =
+    routeFields?.metadataDescription?.value?.toString() ||
+    routeFields?.pageSummary?.value?.toString() ||
+    'Solterra & Co. - Editorial-style content for lifestyle brands';
+
+  const ogTitle =
+    routeFields?.ogTitle?.value?.toString() ||
+    metadataTitle;
+
+  const ogDescription =
+    routeFields?.ogDescription?.value?.toString() ||
+    metadataDescription;
+
+  // Ensure image URL is absolute (HTTPS preferred)
+  const imageSource =
+    routeFields?.ogImage?.value?.src ||
+    routeFields?.thumbnailImage?.value?.src;
+
+  const ogImageUrl = imageSource
+    ? imageSource.startsWith('http')
+      ? imageSource
+      : `${baseUrl}${imageSource.startsWith('/') ? '' : '/'}${imageSource}`
+    : undefined;
+
+  // Construct the full page URL
+  const pagePath = path ? `/${path.join('/')}` : '';
+  const pageUrl = `${baseUrl}${pagePath}`;
 
   return {
-    title: fields?.Title?.value?.toString() || 'Page',
-    description:
-      fields?.ogDescription?.value?.toString() ||
-      'Sitecore Next.js App Router Example',
-    keywords,
-    alternates: {
-      canonical: canonicalUrl,
-    },
+    title: metadataTitle,
+    description: metadataDescription,
     openGraph: {
-      title: fields?.ogTitle?.value?.toString() || 'Page',
-      description:
-        fields?.ogDescription?.value?.toString() ||
-        'Sitecore Next.js App Router Example',
-      url: canonicalUrl,
-      images:
-        fields?.ogImage?.value?.src || fields?.thumbnailImage?.value?.src,
+      title: ogTitle,
+      description: ogDescription,
+      url: pageUrl,
+      type: 'website',
+      siteName: site || 'Solterra & Co.',
+      locale: locale || 'en',
+      images: ogImageUrl
+        ? [
+            {
+              url: ogImageUrl,
+              width: 1200,
+              height: 630,
+              alt: ogTitle,
+            },
+          ]
+        : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: ogTitle,
+      description: ogDescription,
+      images: ogImageUrl ? [ogImageUrl] : undefined,
     },
   };
 };

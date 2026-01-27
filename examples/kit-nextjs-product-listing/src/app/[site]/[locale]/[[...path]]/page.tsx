@@ -81,7 +81,7 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const url = `${protocol}://${host}`;
+  const baseUrl = `${protocol}://${host}`;
   const { path, site, locale } = await params;
 
   // The same call as for rendering the page. Should be cached by default react behavior
@@ -107,6 +107,25 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const resolvedOgDescription = ogDescription || resolvedDescription;
   const resolvedImage = ogImageSrc || thumbnailImageSrc;
 
+
+  // Build metadata with proper fallbacks
+  const resolvedTitle = metadataTitle || pageTitle || 'Page';
+  const resolvedDescription = metadataDescription || pageSummary || ogDescription || 'SYNC';
+  const resolvedOgTitle = ogTitle || resolvedTitle;
+  const resolvedOgDescription = ogDescription || resolvedDescription;
+
+  // Ensure image URL is absolute (OpenGraph requires absolute URLs)
+  const getAbsoluteImageUrl = (src: string | undefined): string | undefined => {
+    if (!src) return undefined;
+    // Already absolute URL
+    if (src.startsWith('http://') || src.startsWith('https://')) {
+      return src;
+    }
+    // Relative URL - prepend base URL
+    return `${baseUrl}${src.startsWith('/') ? '' : '/'}${src}`;
+  };
+
+  const resolvedImage = getAbsoluteImageUrl(ogImageSrc);
 
   return {
     title: resolvedTitle,

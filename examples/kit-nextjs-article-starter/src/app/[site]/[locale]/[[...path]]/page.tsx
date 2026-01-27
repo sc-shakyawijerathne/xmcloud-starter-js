@@ -88,7 +88,7 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host');
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const url = `${protocol}://${host}`;
+  const baseUrl = `${protocol}://${host}`;
 
   const { path, site, locale } = await params;
 

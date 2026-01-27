@@ -303,19 +303,19 @@ SharedFields:
                 Set-Rendering -Item $testDriveItem -FinalLayout
       
             Write-Verbose "Update home page fields"
-            $title = "Alaris - Get set for an electric future."
+            $title = "Alaris - Get set for an electric future"
             $shortTitle = "Alaris"
-    
+            $description = "Experience the future of electric vehicles with Alaris. Explore our innovative lineup of sustainable cars designed for tomorrow."
             $item."pageTitle" = $title
             $item."pageShortTitle" = $shortTitle
             $item."pageHeaderTitle" = $shortTitle
-            $item."pageSummary" = $title
-    
+            $item."pageSummary" = $description
             $item."metadataTitle" = $title
-            $item."metadataDescription" = $title
-            $item."metadataKeywords" = "Alaris, electric, future"
+            $item."metadataDescription" = $description
+            $item."metadataKeywords" = "Alaris, electric vehicles, EV, sustainable cars, future mobility"
             $item."ogTitle" = $title
-            $item."ogDescription" = $title
+            $item."ogDescription" = $description
+            $item."ogImage" = "<image mediaid=`"{34DE6E63-EE15-4D55-AEEA-C5600D7E7EB8}`" />"
     
             # Add Promo variants
             $promoVariant = Get-Item -Path "$sitePath/Presentation/Headless Variants/Promo" -Language $Site.Language

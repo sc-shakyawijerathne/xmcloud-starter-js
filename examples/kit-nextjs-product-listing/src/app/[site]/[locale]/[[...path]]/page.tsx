@@ -98,6 +98,15 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const ogTitle = routeFields?.ogTitle?.value?.toString();
   const ogDescription = routeFields?.ogDescription?.value?.toString();
   const ogImageSrc = routeFields?.ogImage?.value?.src;
+  const thumbnailImageSrc = routeFields?.thumbnailImage?.value?.src;
+
+  // Build metadata with proper fallbacks
+  const resolvedTitle = metadataTitle || pageTitle || 'Page';
+  const resolvedDescription = metadataDescription || pageSummary || ogDescription || 'SYNC';
+  const resolvedOgTitle = ogTitle || resolvedTitle;
+  const resolvedOgDescription = ogDescription || resolvedDescription;
+  const resolvedImage = ogImageSrc || thumbnailImageSrc;
+
 
   // Build metadata with proper fallbacks
   const resolvedTitle = metadataTitle || pageTitle || 'Page';
@@ -126,14 +135,8 @@ export const generateMetadata = async ({ params }: PageProps) => {
       type: 'website',
       title: resolvedOgTitle,
       description: resolvedOgDescription,
-      url: baseUrl,
+      url: url,
       siteName: site,
-      images: resolvedImage || undefined,
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: resolvedOgTitle,
-      description: resolvedOgDescription,
       images: resolvedImage || undefined,
     },
     twitter: {

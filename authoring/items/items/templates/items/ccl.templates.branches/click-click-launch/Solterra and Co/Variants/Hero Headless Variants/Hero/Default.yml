@@ -1,8 +1,8 @@
 ﻿---
-ID: "a53b2d7c-b409-4819-acaa-38d7e37234a4"
-Parent: "485ab836-ba3f-4a22-8405-69a454bcb934"
-Template: "49c111d0-6867-4798-a724-1f103166e6e9"
-Path: "/sitecore/templates/Branches/Project/click-click-launch/Solterra and Co/Variants/Location Search Headless Variants/Location Search"
+ID: "9fa1209c-ee3a-4481-af2a-2c5a20b5723c"
+Parent: "16e1d3d1-1ffc-4f4c-ab43-30f608aaed43"
+Template: "4d50cdae-c2d9-4de8-b080-8f992bfb1b55"
+Path: "/sitecore/templates/Branches/Project/click-click-launch/Solterra and Co/Variants/Hero Headless Variants/Hero/Default"
 Languages:
 - Language: en
   Versions:
@@ -10,7 +10,7 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250320T180358Z
+      Value: 20250313T184947Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
@@ -21,11 +21,11 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "07573595-d188-40c5-bd3b-817d3ff8b629"
+      Value: "678490f5-12f8-4aea-8b5f-0c69fd94187b"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\Admin
+        sitecore\shakya.wijerathne@sitecore.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250320T180358Z
+      Value: 20260203T050124Z

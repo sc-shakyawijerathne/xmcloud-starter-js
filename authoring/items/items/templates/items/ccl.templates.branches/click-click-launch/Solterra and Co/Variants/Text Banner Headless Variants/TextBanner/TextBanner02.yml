@@ -1,20 +1,24 @@
 ﻿---
-ID: "8fcf6db8-1dce-44ee-bc43-22b140084a68"
-Parent: "d39b59c0-b7ef-4b1b-99f5-a6f9a6abde81"
+ID: "04820ae2-38ee-4e04-ada8-0bb7d7b1c394"
+Parent: "247598aa-55af-47e9-94ca-bbc7e6ed2b6d"
 Template: "4d50cdae-c2d9-4de8-b080-8f992bfb1b55"
-Path: "/sitecore/templates/Branches/Project/click-click-launch/Solterra and Co/Variants/ProductListing Headless Variants/ProductListing/ThreeUp"
+Path: "/sitecore/templates/Branches/Project/click-click-launch/Solterra and Co/Variants/Text Banner Headless Variants/TextBanner/TextBanner02"
+SharedFields:
+- ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
+  Hint: __Sortorder
+  Value: 300
 Languages:
 - Language: en
   Fields:
   - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
     Hint: __Display name
-    Value: Centered
+    Value: Black, Text Centered
   Versions:
   - Version: 1
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250319T174851Z
+      Value: 20250317T184646Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
@@ -25,11 +29,11 @@ Languages:
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "fb064c8b-6787-4182-baae-45071834e760"
+      Value: "c3e36321-9e35-440f-823a-2cd46043362e"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\Admin
+        sitecore\shakya.wijerathne@sitecore.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250319T184436Z
+      Value: 20260203T053336Z

@@ -1,8 +1,8 @@
 ﻿---
-ID: "26dc9c1c-0293-4268-835b-80a2eefba599"
-Parent: "0d10e46c-b20b-4514-818e-4965c8f2d550"
-Template: "49c111d0-6867-4798-a724-1f103166e6e9"
-Path: "/sitecore/templates/Branches/Project/click-click-launch/Solterra and Co/Variants/ImageCarousel Headless Variants/ImageCarousel"
+ID: "4b9c73be-be32-4b06-afcd-2eeff23c4085"
+Parent: "abc0959f-fe5b-42b2-bee1-b88e5542131b"
+Template: "35e75c72-4985-4e09-88c3-0eac6cd1e64f"
+Path: "/sitecore/templates/Branches/Project/click-click-launch/Solterra and Co/Variants/Hero Headless Variants"
 Languages:
 - Language: en
   Versions:
@@ -10,22 +10,22 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20250318T190356Z
+      Value: 20250529T153318Z
     - ID: "52807595-0f8f-4b20-8d2a-cb71d28c6103"
       Hint: __Owner
       Value: |
-        sitecore\Admin
+        sitecore\richard.seal@sitecore.com
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
-        sitecore\Admin
+        sitecore\richard.seal@sitecore.com
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "090d5803-7116-4db1-aeb7-68f39fe8b3ff"
+      Value: "060735dd-3981-4d22-a864-8e28226526f8"
     - ID: "badd9cf9-53e0-4d0c-bcc0-2d784c282f6a"
       Hint: __Updated by
       Value: |
-        sitecore\Admin
+        sitecore\shakya.wijerathne@sitecore.com
     - ID: "d9cf14b1-fa16-4ba6-9288-e8a174d4d522"
       Hint: __Updated
-      Value: 20250318T190403Z
+      Value: 20260203T050123Z

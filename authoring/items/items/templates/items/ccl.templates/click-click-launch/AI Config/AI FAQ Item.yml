@@ -7,6 +7,9 @@ SharedFields:
 - ID: "ba3f86a2-4a1c-4d78-b63d-91c2779c1b5e"
   Hint: __Sortorder
   Value: 300
+- ID: "f7d48a55-2158-4f02-9356-756654404f73"
+  Hint: __Standard values
+  Value: "{3C4D5E6F-7A8B-4C9D-0E1F-2A3B4C5D6E7F}"
 Languages:
 - Language: en
   Fields:

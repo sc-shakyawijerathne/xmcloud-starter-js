@@ -8,10 +8,10 @@ Languages:
   Fields:
   - ID: "d4e5f6a7-b8c9-4d5e-1f2a-3b4c5d6e7f8a"
     Hint: title
-    Value: "[Site Name]"
+    Value: SYNC
   - ID: "e5f6a7b8-c9d0-4e5f-2a3b-4c5d6e7f8a9b"
     Hint: description
-    Value: "[Enter a short description of your site for AI crawlers. Maximum 800 characters.]"
+    Value: SYNC is a product-focused site for audio gear companies. It showcases product listings, categories, and commerce-oriented experiences built with Sitecore XM Cloud and Next.js. The template delivers performance, personalization, and AI-ready content for product discovery and e-commerce.
   Versions:
   - Version: 1
     Fields:

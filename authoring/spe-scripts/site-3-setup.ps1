@@ -184,22 +184,11 @@ function Invoke-ModuleScriptBody {
         $item."ogTitle" = $title
         $item."ogDescription" = $title
         
-        $siteName = $Site.Name
-        Write-Verbose "Create AI config at sitecore/content/sync/$siteName/data/AI"
-        $syncContentRootPath = "/sitecore/content/sync"
-        $siteFolderTemplateId = "{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}"
-        if (-not (Test-Path $syncContentRootPath)) {
-            New-Item -Path "/sitecore/content" -Name "sync" -ItemType $siteFolderTemplateId | Out-Null
-        }
-        $syncRoot = Get-Item -Path $syncContentRootPath -Language $Site.Language
-        $siteFolderPath = "$($syncRoot.Paths.Path)/$siteName"
-        if (-not (Test-Path $siteFolderPath)) {
-            New-Item -Path $syncRoot.Paths.Path -Name $siteName -ItemType $siteFolderTemplateId | Out-Null
-        }
-        $siteFolder = Get-Item -Path $siteFolderPath -Language $Site.Language
-        $dataFolderPath = "$($siteFolder.Paths.Path)/data"
+        Write-Verbose "Create AI config at $sitePath/Data/AI"
+        $dataFolderPath = "$sitePath/Data"
         if (-not (Test-Path $dataFolderPath)) {
-            New-Item -Path $siteFolder.Paths.Path -Name "data" -ItemType $siteFolderTemplateId | Out-Null
+            $siteFolderTemplateId = "{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}"
+            New-Item -Path $sitePath -Name "Data" -ItemType $siteFolderTemplateId | Out-Null
         }
         $dataFolder = Get-Item -Path $dataFolderPath -Language $Site.Language
         $aiFolderPath = "$($dataFolder.Paths.Path)/AI"

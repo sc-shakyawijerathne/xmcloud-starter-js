@@ -1,4 +1,4 @@
-﻿---
+---
 ID: "ef9b8d7d-d8e4-4201-80c9-f6f640ba5dd2"
 Parent: "4ff2646c-2b0f-428f-b9a0-d6ea531de713"
 Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
@@ -252,6 +252,19 @@ SharedFields:
             $articleListing.Editing.BeginEdit()
             $articleListing._.featuredContent = "$($article1.ID)|$($article2.ID)|$($article3.ID)|$($articleQa2.ID)|$($articleQa2.ID)"
             $articleListing.Editing.EndEdit()
+            
+            Write-Verbose "Create AI config at $sitePath/Data/AI"
+            $dataFolderPath = "$sitePath/Data"
+            if (-not (Test-Path $dataFolderPath)) {
+                $siteFolderTemplateId = "{A87A00B1-E6DB-45AB-8B54-636FEC3B5523}"
+                New-Item -Path $sitePath -Name "Data" -ItemType $siteFolderTemplateId | Out-Null
+            }
+            $dataFolder = Get-Item -Path $dataFolderPath -Language $Site.Language
+            $aiFolderPath = "$($dataFolder.Paths.Path)/AI"
+            if (-not (Test-Path $aiFolderPath)) {
+                $addAiConfigBranchTemplate = Get-Item -Path "/sitecore/templates/Branches/Project/click-click-launch/Solterra and Co/Add AI Config" -Language $Site.Language
+                New-Item -Parent $dataFolder -Name "AI" -ItemType $addAiConfigBranchTemplate.ID | Out-Null
+            }
             
             Write-Verbose "Create dictionary items"
             $dictionaryRoot = Get-Item -Path "$sitePath/Dictionary" -Language $Site.Language

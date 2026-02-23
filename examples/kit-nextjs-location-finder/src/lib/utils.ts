@@ -50,14 +50,20 @@ export function getYouTubeThumbnail(videoId: string, width: number, height?: num
 }
 
 /**
- * Get base URL for the application
+ * Get base URL for the application.
+ * When host is provided (e.g. from request headers), uses it so deployed URLs are correct.
+ * Otherwise uses NEXT_PUBLIC_SITE_URL or NEXT_PUBLIC_BASE_URL, then localhost.
  */
 export function getBaseUrl(host?: string | null): string {
   if (host) {
     const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
     return `${protocol}://${host}`;
   }
-  return process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  return (
+    process.env.NEXT_PUBLIC_SITE_URL ||
+    process.env.NEXT_PUBLIC_BASE_URL ||
+    'http://localhost:3000'
+  );
 }
 
 /**

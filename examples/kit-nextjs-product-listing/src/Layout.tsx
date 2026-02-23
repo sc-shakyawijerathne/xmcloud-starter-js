@@ -59,6 +59,7 @@ import SitecoreStyles from 'components/content-sdk/SitecoreStyles';
 
 interface LayoutProps {
   page: Page;
+  baseUrl?: string;
 }
 
 export interface RouteFields {
@@ -74,7 +75,7 @@ export interface RouteFields {
   thumbnailImage?: ImageField;
 }
 
-const Layout = ({ page }: LayoutProps): JSX.Element => {
+const Layout = ({ page, baseUrl: baseUrlProp }: LayoutProps): JSX.Element => {
   const { layout } = page;
   const { route } = layout.sitecore;
   const { isEditing } = page.mode;
@@ -83,15 +84,16 @@ const Layout = ({ page }: LayoutProps): JSX.Element => {
   const mainClassPageEditing = isEditing ? 'editing-mode' : 'prod-mode';
   const classNamesMain = `${mainClassPageEditing} ${mainClassPartialDesignEditing} ${accent.variable} ${body.variable} ${heading.variable} main-layout`;
 
-  // Generate JSON-LD structured data for Organization and WebSite
-  // Note: URL will be set dynamically on client-side if needed
+  // Generate JSON-LD structured data for Organization and WebSite (use request-derived baseUrl when provided)
+  const baseUrl = baseUrlProp ?? process.env.NEXT_PUBLIC_SITE_URL ?? '';
   const organizationSchema = generateOrganizationSchema({
     name: 'SYNC',
+    ...(baseUrl && { url: baseUrl }),
   });
 
   const websiteSchema = generateWebSiteSchema({
     name: 'SYNC',
-    url: '', // Will be populated on client-side if needed
+    url: baseUrl,
   });
 
   return (

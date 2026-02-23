@@ -36,6 +36,8 @@ const body = Roboto({
 
 interface LayoutProps {
   page: Page;
+  /** Base URL for the site (e.g. from request host or NEXT_PUBLIC_SITE_URL). When provided, used for JSON-LD so deployed URLs are correct. */
+  baseUrl?: string;
 }
 
 export interface RouteFields {
@@ -52,14 +54,14 @@ export interface RouteFields {
   Title?: Field;
 }
 
-const Layout = ({ page }: LayoutProps): JSX.Element => {
+const Layout = ({ page, baseUrl: baseUrlProp }: LayoutProps): JSX.Element => {
   const { layout, mode } = page;
   const { route } = layout.sitecore;
   const mainClassPageEditing = mode.isEditing ? 'editing-mode' : 'prod-mode';
   const classNamesMain = `${mainClassPageEditing} ${body.variable} ${heading.variable} main-layout`;
 
-  // Generate site-wide structured data
-  const baseUrl = getBaseUrl();
+  // Generate site-wide structured data (use request-derived baseUrl when provided so deployed URLs are correct)
+  const baseUrl = baseUrlProp ?? getBaseUrl();
   const websiteSchema = generateWebSiteSchema('Alaris', baseUrl, 'Find your nearest Alaris dealership');
   const organizationSchema = generateOrganizationSchema('Alaris', baseUrl, undefined, 'Alaris - Premium automotive dealership network');
 

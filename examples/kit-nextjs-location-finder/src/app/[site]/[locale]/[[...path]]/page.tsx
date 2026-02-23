@@ -15,7 +15,7 @@ import {
   generateProductSchema,
 } from 'src/lib/structured-data/schema';
 import { StructuredData } from '@/components/structured-data/StructuredData';
-import { getFullUrl } from '@/lib/utils';
+import { getFullUrl, getBaseUrl } from '@/lib/utils';
 
 type PageProps = {
   params: Promise<{
@@ -31,7 +31,10 @@ export default async function Page({ params, searchParams }: PageProps) {
   const { site, locale, path } = await params;
   const draft = await draftMode();
   const headersList = await headers();
-  const host = headersList.get('host');
+  const host = headersList.get('host') || '';
+  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || (host ? `${protocol}://${host}` : '') || getBaseUrl();
 
   setRequestLocale(`${site}_${locale}`);
 
@@ -57,7 +60,7 @@ export default async function Page({ params, searchParams }: PageProps) {
   const pageTitle = fields?.Title?.value?.toString() || fields?.pageTitle?.value?.toString() || 'Page';
   const pageDescription = fields?.metadataDescription?.value?.toString() || fields?.ogDescription?.value?.toString();
   const currentPath = path?.length ? `/${path.join('/')}` : '/';
-  const fullUrl = getFullUrl(currentPath, host);
+  const fullUrl = baseUrl ? `${baseUrl}${currentPath}` : getFullUrl(currentPath, host || undefined);
   const webPageSchema = generateWebPageSchema(pageTitle, fullUrl, pageDescription, locale);
 
   // Detect if this is a product page and generate Product schema
@@ -78,7 +81,7 @@ export default async function Page({ params, searchParams }: PageProps) {
         {/* Page-specific structured data */}
         <StructuredData id="webpage-schema" data={webPageSchema} />
         {productSchema && <StructuredData id="product-schema-page" data={productSchema} />}
-        <Layout page={page} />
+        <Layout page={page} baseUrl={baseUrl || undefined} />
       </Providers>
     </NextIntlClientProvider>
   );
@@ -119,7 +122,8 @@ export const generateMetadata = async ({ params }: PageProps) => {
   const headersList = await headers();
   const host = headersList.get('host') || '';
   const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || (host ? `${protocol}://${host}` : '');
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || (host ? `${protocol}://${host}` : '') || getBaseUrl();
 
   const { site, locale, path } = await params;
 

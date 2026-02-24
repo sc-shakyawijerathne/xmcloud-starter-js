@@ -55,9 +55,14 @@ const nextConfig = {
         source: '/robots.txt',
         destination: '/api/robots',
       },
-      // sitemap route
+      // sitemap.xml serves the main sitemap
       {
-        source: '/sitemap:id([\\w-]{0,}).xml',
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+      },
+      // Numbered sitemap index pages (e.g. /sitemap-0.xml, /sitemap-1.xml)
+      {
+        source: '/sitemap-:id(\\d+).xml',
         destination: '/api/sitemap',
       },
       // ai.txt route for AI crawlers

@@ -35,7 +35,14 @@ const nextConfig: NextConfig = {
   rewrites: async () => {
     return [
       {
-        source: '/sitemap:id([\\w-]{0,}).xml',
+        // sitemap.xml serves the main sitemap
+        source: '/sitemap.xml',
+        destination: '/api/sitemap',
+        locale: false,
+      },
+      {
+        // Numbered sitemap index pages (e.g. /sitemap-0.xml, /sitemap-1.xml)
+        source: '/sitemap-:id(\\d+).xml',
         destination: '/api/sitemap',
         locale: false,
       },

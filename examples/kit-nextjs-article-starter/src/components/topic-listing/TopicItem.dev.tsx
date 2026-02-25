@@ -1,14 +1,9 @@
-'use client';
-
 import { ButtonBase } from '@/components/button-component/ButtonComponent';
 import { TopicItemProps } from './topic-listing.props';
 import { ButtonVariants } from '@/enumerations/ButtonStyle.enum';
-import { useSitecore, LinkField } from '@sitecore-content-sdk/nextjs';
+import type { LinkField } from '@sitecore-content-sdk/nextjs';
 
-export const TopicItem: React.FC<TopicItemProps> = ({ link }) => {
-  const { page } = useSitecore();
-  const isPageEditing = page.mode.isEditing;
-
+export const TopicItem: React.FC<TopicItemProps> = ({ link, isPageEditing = false }) => {
   // Create an empty link for editing mode
   const emptyLink: LinkField = { value: { href: '#', text: 'Add link' } };
 

@@ -1,27 +1,26 @@
-'use client';
-
 import React, { JSX } from 'react';
 import {
   RichText as ContentSdkRichText,
-  useSitecore,
   RichTextField,
 } from '@sitecore-content-sdk/nextjs';
+import { ComponentProps } from 'lib/component-props';
 
 interface Fields {
   Content: RichTextField;
 }
 
-type PageContentProps = {
+type PageContentProps = ComponentProps & {
   params: { [key: string]: string };
   fields: Fields;
 };
 
 export const Default = (props: PageContentProps): JSX.Element => {
-  const { page } = useSitecore();
-  const sxaStyles = props.params?.Styles ?? '';
-  const id = props.params?.RenderingIdentifier ?? null;
+  const { page, params, fields } = props;
 
-  if (!(props.fields && props.fields.Content) && !page?.layout.sitecore.route?.fields?.Content) {
+  const sxaStyles = params?.Styles ?? '';
+  const id = params?.RenderingIdentifier ?? null;
+
+  if (!(fields && fields.Content) && !page?.layout.sitecore.route?.fields?.Content) {
     return (
       <div className={`component page-content ${sxaStyles}`} id={id ? id : undefined}>
         <div className="component-content">
@@ -36,8 +35,8 @@ export const Default = (props: PageContentProps): JSX.Element => {
       <div className="component-content">
         <ContentSdkRichText
           field={
-            (props.fields && props.fields.Content
-              ? props.fields.Content
+            (fields && fields.Content
+              ? fields.Content
               : page?.layout.sitecore.route?.fields?.Content) as RichTextField
           }
           className="field-content"

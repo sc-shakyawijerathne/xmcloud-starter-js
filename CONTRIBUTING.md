@@ -100,9 +100,23 @@ Navigate to the relevant example (e.g., kit-nextjs-article-starter) and start th
 
 💡 Make sure to populate the required environment variables in your .env.local file to connect to your XM Cloud instance.
 
-      cd examples/kit-nextjs-article-starter
-      npm install
-      npm run dev
+   **Development (with hot reload):**
+   ```bash
+   cd examples/kit-nextjs-article-starter
+   npm install
+   npm run dev
+   ```
+
+   **Build and run for production:**
+   ```bash
+   cd examples/kit-nextjs-article-starter
+   npm install
+   npm run build
+   npm run start
+   ```
+   Use `npm run build` to create a production build, then `npm run start` to run it locally.
+
+### Coding Guidelines
 
 ### Coding Guidelines
 

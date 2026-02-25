@@ -1,9 +1,14 @@
-'use client';
+import React, { type JSX } from 'react';
+import {
+  LinkField,
+  Text,
+  TextField,
+} from '@sitecore-content-sdk/nextjs';
+import { NavigationMenuToggle } from './NavigationMenuToggle.client';
+import { NavigationList } from './NavigationList.client';
+import { ComponentProps } from 'lib/component-props';
 
-import React, { useState, JSX } from 'react';
-import { Link, LinkField, TextField, useSitecore } from '@sitecore-content-sdk/nextjs';
-
-interface Fields {
+export interface Fields {
   Id: string;
   DisplayName: string;
   Title: TextField;
@@ -14,14 +19,28 @@ interface Fields {
   Styles: string[];
 }
 
-type NavigationProps = {
+export type NavigationProps = ComponentProps & {
   params?: { [key: string]: string };
   fields: Fields;
   handleClick: (event?: React.MouseEvent<HTMLElement>) => void;
   relativeLevel: number;
 };
 
-const getLinkField = (props: NavigationProps): LinkField => ({
+const getNavigationText = function (props: { fields: Fields }): JSX.Element | string {
+  let text: JSX.Element | string;
+
+  if (props.fields.NavigationTitle) {
+    text = <Text field={props.fields.NavigationTitle} />;
+  } else if (props.fields.Title) {
+    text = <Text field={props.fields.Title} />;
+  } else {
+    text = props.fields.DisplayName;
+  }
+
+  return text;
+};
+
+const getLinkField = (props: { fields: Fields }): LinkField => ({
   value: {
     href: props.fields.Href,
     title: getLinkTitle(props),
@@ -29,9 +48,26 @@ const getLinkField = (props: NavigationProps): LinkField => ({
   },
 });
 
+const getLinkTitle = (props: { fields: Fields }): string | undefined => {
+  let title: string | undefined;
+  if (props.fields.NavigationTitle?.value) {
+    title = props.fields.NavigationTitle.value.toString();
+  } else if (props.fields.Title?.value) {
+    title = props.fields.Title.value.toString();
+  } else {
+    title = props.fields.DisplayName;
+  }
+
+  return title;
+};
+
+/**
+ * Server component for Navigation.
+ * Pass isEditing as prop from parent when rendering in editing context.
+ */
 export const Default = (props: NavigationProps): JSX.Element => {
-  const [isOpenMenu, openMenu] = useState(false);
-  const { page } = useSitecore();
+  const { page } = props;
+
   const styles =
     props.params != null
       ? `${props.params.GridParameters ?? ''} ${props.params.Styles ?? ''}`.trimEnd()
@@ -46,16 +82,9 @@ export const Default = (props: NavigationProps): JSX.Element => {
     );
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleToggleMenu = (event?: React.MouseEvent<HTMLElement>, flag?: boolean): void => {
-    if (event && page.mode.isEditing) {
-      event.preventDefault();
-    }
-
-    if (flag !== undefined) {
-      return openMenu(flag);
-    }
-
-    openMenu(!isOpenMenu);
+    props.handleClick(event);
   };
 
   const list = Object.values(props.fields)
@@ -66,86 +95,24 @@ export const Default = (props: NavigationProps): JSX.Element => {
         fields={element}
         handleClick={(event: React.MouseEvent<HTMLElement>) => handleToggleMenu(event, false)}
         relativeLevel={1}
+        isEditing={page.mode.isEditing}
+        getLinkField={getLinkField}
+        getNavigationText={getNavigationText}
       />
     ));
 
   return (
     <div className={`component navigation ${styles}`} id={id ? id : undefined}>
       <label className="menu-mobile-navigate-wrapper">
-        <input
-          type="checkbox"
-          className="menu-mobile-navigate"
-          checked={isOpenMenu}
-          onChange={() => handleToggleMenu()}
-        />
-        <div className="menu-humburger" />
-        <div className="component-content">
-          <nav>
-            <ul className="clearfix">{list}</ul>
-          </nav>
-        </div>
+        <NavigationMenuToggle isEditing={page.mode.isEditing} onToggle={handleToggleMenu}>
+          <div className="menu-humburger" />
+          <div className="component-content">
+            <nav>
+              <ul className="clearfix">{list}</ul>
+            </nav>
+          </div>
+        </NavigationMenuToggle>
       </label>
     </div>
   );
-};
-
-const NavigationList = (props: NavigationProps) => {
-  const { page } = useSitecore();
-  const [active, setActive] = useState(false);
-  const classNameList = `${props.fields.Styles.concat('rel-level' + props.relativeLevel).join(
-    ' '
-  )}`;
-
-  let children: JSX.Element[] = [];
-  if (props.fields.Children && props.fields.Children.length) {
-    children = props.fields.Children.map((element: Fields, index: number) => (
-      <NavigationList
-        key={`${index}${element.Id}`}
-        fields={element}
-        handleClick={props.handleClick}
-        relativeLevel={props.relativeLevel + 1}
-      />
-    ));
-  }
-
-  const getNavigationText = (props: NavigationProps): string => {
-    if (props.fields.NavigationTitle?.value) {
-      return props.fields.NavigationTitle.value.toString();
-    } else if (props.fields.Title?.value) {
-      return props.fields.Title.value.toString();
-    } else {
-      return props.fields.DisplayName;
-    }
-  };
-
-  return (
-    <li className={`${classNameList} ${active ? 'active' : ''}`} key={props.fields.Id} tabIndex={0}>
-      <div
-        className={`navigation-title ${children.length ? 'child' : ''}`}
-        onClick={() => setActive(() => !active)}
-      >
-        <Link
-          field={getLinkField(props)}
-          editable={page.mode.isEditing}
-          onClick={props.handleClick}
-        >
-          {getNavigationText(props)}
-        </Link>
-      </div>
-      {children.length > 0 ? <ul className="clearfix">{children}</ul> : null}
-    </li>
-  );
-};
-
-const getLinkTitle = (props: NavigationProps): string | undefined => {
-  let title;
-  if (props.fields.NavigationTitle?.value) {
-    title = props.fields.NavigationTitle.value.toString();
-  } else if (props.fields.Title?.value) {
-    title = props.fields.Title.value.toString();
-  } else {
-    title = props.fields.DisplayName;
-  }
-
-  return title;
 };

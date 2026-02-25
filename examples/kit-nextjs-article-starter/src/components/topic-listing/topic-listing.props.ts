@@ -26,4 +26,5 @@ export type TopicItemProps = {
   link?: {
     jsonValue?: LinkField;
   };
+  isPageEditing?: boolean;
 };

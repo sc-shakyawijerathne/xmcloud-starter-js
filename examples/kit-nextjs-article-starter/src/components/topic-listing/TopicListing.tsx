@@ -9,6 +9,7 @@ export const Default: React.FC<TopicListingProps> = (props) => {
   const {
     fields,
     params: { backgroundTheme },
+    page
   } = props;
   const { title, children } = fields?.data?.datasource ?? {};
 
@@ -53,7 +54,11 @@ export const Default: React.FC<TopicListingProps> = (props) => {
             {children?.results && (
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {children.results.map((topic, index) => (
-                  <TopicItem key={index} {...topic} />
+                  <TopicItem
+                    key={index}
+                    {...topic}
+                    isPageEditing={page?.mode?.isEditing}
+                  />
                 ))}
               </div>
             )}

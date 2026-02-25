@@ -117,12 +117,23 @@ For developers new to XM Cloud you can follow the Getting Started Guide on the [
 - In the `Local Development` section, click to copy the sample `.env` file contents to your clipboard.
 - Create a new `.env.local` file in the `./examples/basic-nextjs` folder of this repository and paste the contents from your clipboard.
 - Run the following commands in the root of the repository to start the NextJs application:
+
+  **Development (with hot reload):**
   ```bash
   cd examples/basic-nextjs
   npm install
   npm run dev
   ```
-- You should now be able to access your site on `http://localhost:3000` and see your changes in real-time as you make them.
+  You should now be able to access your site on `http://localhost:3000` and see your changes in real-time as you make them.
+
+  **Build and run for production:**
+  ```bash
+  cd examples/basic-nextjs
+  npm install
+  npm run build
+  npm run start
+  ```
+  This builds the app and runs it in production mode. Access the site at `http://localhost:3000`.
 
 ### SPA Starters Monorepo and Angular SPA
 

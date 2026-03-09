@@ -8,5 +8,5 @@ export async function GET() {
   const { items, lastModified } = await fetchFaqFromEdge();
   const faq = items.slice(0, MAX_ITEMS);
   const payload = faq.length >= MIN_ITEMS ? faq : [];
-  return aiJsonResponse({ faq: payload, lastModified });
+  return aiJsonResponse({ items: payload, lastModified });
 }

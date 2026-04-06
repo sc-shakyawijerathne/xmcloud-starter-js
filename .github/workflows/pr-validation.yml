@@ -120,7 +120,7 @@ jobs:
             if [ -d "examples/$starter" ]; then
               echo "Installing dependencies for $starter..."
               cd "examples/$starter"
-              npm install
+              npm ci
               cd ../..
             fi
           done

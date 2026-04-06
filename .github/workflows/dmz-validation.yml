@@ -1,5 +1,8 @@
 name: DMZ Branch Validation
 
+permissions:
+  contents: read
+
 on:
   push:
     branches: [dmz]
@@ -126,28 +129,28 @@ jobs:
           if [ -d "examples/kit-nextjs-skate-park" ]; then
             echo "Installing dependencies for kit-nextjs-skate-park..."
             cd examples/kit-nextjs-skate-park
-            npm install
+            npm ci
             cd ../..
           fi
 
           if [ -d "examples/kit-nextjs-article-starter" ]; then
             echo "Installing dependencies for kit-nextjs-article-starter..."
             cd examples/kit-nextjs-article-starter
-            npm install
+            npm ci
             cd ../..
           fi
 
           if [ -d "examples/kit-nextjs-location-finder" ]; then
             echo "Installing dependencies for kit-nextjs-location-finder..."
             cd examples/kit-nextjs-location-finder
-            npm install
+            npm ci
             cd ../..
           fi
 
           if [ -d "examples/kit-nextjs-product-listing" ]; then
             echo "Installing dependencies for kit-nextjs-product-listing..."
             cd examples/kit-nextjs-product-listing
-            npm install
+            npm ci
             cd ../..
           fi
 

@@ -145,7 +145,7 @@
     "lodash": "4.18.1",
     "lodash-es": "4.18.1",
     "flatted": "3.4.2",
-    "minimatch": "3.1.5"
+    "minimatch@<3.1.3": "3.1.5"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production npm-run-all --serial sitecore-tools:generate-map sitecore-tools:build next:build",

@@ -59,7 +59,7 @@
     "@radix-ui/react-tooltip": "^1.2.7",
     "@radix-ui/themes": "^3.2.1",
     "@sitecore-cloudsdk/core": "^0.5.4",
-    "@sitecore-cloudsdk/events": "^0.5.4",
+    "@sitecore-cloudsdk/events": "^0.6.1",
     "@sitecore-content-sdk/nextjs": "^1.0.0",
     "@tailwindcss/cli": "^4.1.11",
     "@types/google-libphonenumber": "^7.4.30",

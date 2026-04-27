@@ -65,7 +65,21 @@ updates:
       interval: "weekly"
     open-pull-requests-limit: 5
     ignore:
+      - dependency-name: "@sitecore-jss/*"
+      - dependency-name: "@sitecore-cloudsdk/*"
       - dependency-name: "@angular/*"
+      - dependency-name: "@angular-builders/*"
+      - dependency-name: "@angular-devkit/*"
+      - dependency-name: "@angular-eslint/*"
+      - dependency-name: "zone.js"
+      - dependency-name: "rxjs"
+      - dependency-name: "@apollo/client"
+      - dependency-name: "apollo-angular"
+      - dependency-name: "typescript"
+      - dependency-name: "jasmine-core"
+      - dependency-name: "karma"
+      - dependency-name: "karma-*"
+      - dependency-name: "express"
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     groups:

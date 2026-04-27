@@ -70,7 +70,7 @@ Use the **path for your chosen starter** (e.g. `examples/kit-nextjs-article-star
    Log into the [Sitecore XM Cloud Deploy Portal](https://portal.sitecorecloud.io), open your Environment → **Developer Settings**. Ensure **Preview** is enabled, then copy the sample `.env` contents from **Local Development**.
 
 2. **Create `.env.local`**  
-   In your starter folder (e.g. `examples/kit-nextjs-article-starter`), copy `.env.remote.example` to `.env.local` and paste the contents. Set at least: `SITECORE_EDGE_CONTEXT_ID`, `NEXT_PUBLIC_DEFAULT_SITE_NAME`, `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID`, `SITECORE_EDITING_SECRET`. See [Environment variables in XM Cloud](https://doc.sitecore.com/xmc/en/developers/xm-cloud/get-the-environment-variables-for-a-site.html).
+   In your starter folder (e.g. `examples/kit-nextjs-article-starter`), copy `.env.remote.example` to `.env.local` and paste the contents. Set at least: `SITECORE_EDGE_CONTEXT_ID`, `NEXT_PUBLIC_DEFAULT_SITE_NAME`, `NEXT_PUBLIC_SITECORE_EDGE_CONTEXT_ID`, `SITECORE_EDITING_SECRET`. See [Environment variables in XM Cloud](https://doc.sitecore.com/xmc/en/developers/xm-cloud/get-the-environment-variables-for-a-site.html). Optionally set `NEXT_PUBLIC_SITE_URL` or `NEXT_PUBLIC_BASE_URL` to your public site origin when server-rendered code must build absolute URLs without relying on the request `Host` header (see comments in `.env.remote.example`).
 
 3. **Install and run**
    ```bash

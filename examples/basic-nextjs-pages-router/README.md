@@ -8,6 +8,8 @@ This is the basic Next.js starter using the **Pages Router**, with minimal XM Cl
 
 Follow the [root README — How to Run a Next.js Starter Locally](../../README.md#how-to-run-a-nextjs-starter-locally), using this path: **`examples/basic-nextjs-pages-router`**.
 
+Optional: for stable absolute URLs in server-rendered code when the request has no `Host` header, set `NEXT_PUBLIC_SITE_URL` or `NEXT_PUBLIC_BASE_URL` (see [`.env.remote.example`](.env.remote.example)).
+
 From the repo root:
 
 ```bash

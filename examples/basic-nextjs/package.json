@@ -42,7 +42,7 @@
     "eslint-config-next": "15.5.0",
     "npm-run-all2": "^8.0.4",
     "tailwindcss": "^4",
-    "typescript": "~5.8.3"
+    "typescript": "~6.0.3"
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production npm-run-all --serial sitecore-tools:generate-map sitecore-tools:build next:build",

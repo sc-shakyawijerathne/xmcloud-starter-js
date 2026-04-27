@@ -34,7 +34,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "sass": "^1.87.0",
-    "sass-alias": "^1.0.5",
+    "sass-alias": "^2.0.1",
     "sharp": "0.34.1"
   },
   "devDependencies": {

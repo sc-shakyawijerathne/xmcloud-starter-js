@@ -1,0 +1,59 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "ci"
+
+  - package-ecosystem: "npm"
+    directory: "/examples/basic-nextjs"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/examples/basic-nextjs-pages-router"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/examples/basic-spa"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/examples/kit-nextjs-skate-park"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/examples/kit-nextjs-article-starter"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/examples/kit-nextjs-location-finder"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+
+  - package-ecosystem: "npm"
+    directory: "/examples/kit-nextjs-product-listing"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10

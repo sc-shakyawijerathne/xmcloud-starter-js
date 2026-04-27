@@ -121,7 +121,7 @@
     "@types/node": "^22.16.0",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
-    "@typescript-eslint/eslint-plugin": "^8.35.1",
+    "@typescript-eslint/eslint-plugin": "^8.59.0",
     "@typescript-eslint/parser": "^8.35.1",
     "constant-case": "^3.0.4",
     "cross-env": "^10.0.0",

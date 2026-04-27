@@ -1,0 +1,189 @@
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    commit-message:
+      prefix: "ci"
+
+  - package-ecosystem: "npm"
+    directory: "/examples/basic-nextjs"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-feaas/*"
+      - dependency-name: "@sitecore/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "eslint"
+      - dependency-name: "typescript"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/examples/basic-nextjs-pages-router"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-feaas/*"
+      - dependency-name: "@sitecore/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "next-localization"
+      - dependency-name: "eslint"
+      - dependency-name: "typescript"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/examples/basic-spa"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "@angular/*"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/examples/kit-nextjs-skate-park"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "eslint"
+      - dependency-name: "typescript"
+      - dependency-name: "jest"
+      - dependency-name: "jest-environment-jsdom"
+      - dependency-name: "@testing-library/react"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/examples/kit-nextjs-article-starter"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-feaas/*"
+      - dependency-name: "@sitecore/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "@next/bundle-analyzer"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "eslint"
+      - dependency-name: "typescript"
+      - dependency-name: "jest"
+      - dependency-name: "jest-environment-jsdom"
+      - dependency-name: "@testing-library/react"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/examples/kit-nextjs-location-finder"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "@next/bundle-analyzer"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "eslint"
+      - dependency-name: "typescript"
+      - dependency-name: "jest"
+      - dependency-name: "jest-environment-jsdom"
+      - dependency-name: "@testing-library/react"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"
+
+  - package-ecosystem: "npm"
+    directory: "/examples/kit-nextjs-product-listing"
+    target-branch: "dmz"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-feaas/*"
+      - dependency-name: "@sitecore/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "@next/bundle-analyzer"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "eslint"
+      - dependency-name: "typescript"
+      - dependency-name: "jest"
+      - dependency-name: "jest-environment-jsdom"
+      - dependency-name: "@testing-library/react"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
+    groups:
+      all-dependencies:
+        patterns:
+          - "*"

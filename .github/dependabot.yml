@@ -1,105 +1,247 @@
 version: 2
 updates:
+  # ──────────────────────────────────────────────
+  # GitHub Actions
+  # ──────────────────────────────────────────────
   - package-ecosystem: "github-actions"
     directory: "/"
+    target-branch: "dmz"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 0
+      interval: "weekly"
+    open-pull-requests-limit: 10
     commit-message:
       prefix: "ci"
     groups:
-      gh-actions-security:
-        applies-to: security-updates
+      all-actions:
         patterns:
           - "*"
 
+  # ──────────────────────────────────────────────
+  # basic-nextjs (Content SDK, App Router)
+  # ──────────────────────────────────────────────
   - package-ecosystem: "npm"
     directory: "/examples/basic-nextjs"
+    target-branch: "dmz"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 0
+      interval: "weekly"
+    open-pull-requests-limit: 10
     commit-message:
-      prefix: "security"
+      prefix: "deps(basic-nextjs)"
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-cloudsdk/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "typescript"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      npm-security:
-        applies-to: security-updates
+      all-dependencies:
         patterns:
           - "*"
 
+  # ──────────────────────────────────────────────
+  # basic-nextjs-pages-router (Content SDK, Pages Router)
+  # ──────────────────────────────────────────────
   - package-ecosystem: "npm"
     directory: "/examples/basic-nextjs-pages-router"
+    target-branch: "dmz"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 0
+      interval: "weekly"
+    open-pull-requests-limit: 10
     commit-message:
-      prefix: "security"
+      prefix: "deps(basic-nextjs-pages-router)"
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-cloudsdk/*"
+      - dependency-name: "@sitecore-feaas/*"
+      - dependency-name: "@sitecore/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "next-localization"
+      - dependency-name: "typescript"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      npm-security:
-        applies-to: security-updates
+      all-dependencies:
         patterns:
           - "*"
 
+  # ──────────────────────────────────────────────
+  # basic-spa (Angular + pnpm workspace)
+  # ──────────────────────────────────────────────
   - package-ecosystem: "npm"
     directory: "/examples/basic-spa"
+    target-branch: "dmz"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 0
+      interval: "weekly"
+    open-pull-requests-limit: 10
     commit-message:
-      prefix: "security"
+      prefix: "deps(basic-spa)"
+    ignore:
+      - dependency-name: "@sitecore-jss/*"
+      - dependency-name: "@sitecore-cloudsdk/*"
+      - dependency-name: "@angular/*"
+      - dependency-name: "@angular-builders/*"
+      - dependency-name: "@angular-devkit/*"
+      - dependency-name: "@angular-eslint/*"
+      - dependency-name: "zone.js"
+      - dependency-name: "rxjs"
+      - dependency-name: "@apollo/client"
+      - dependency-name: "apollo-angular"
+      - dependency-name: "typescript"
+      - dependency-name: "webpack"
+      - dependency-name: "karma"
+      - dependency-name: "karma-*"
+      - dependency-name: "jasmine-core"
+      - dependency-name: "express"
+      - dependency-name: "eslint"
+      - dependency-name: "@typescript-eslint/*"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      npm-security:
-        applies-to: security-updates
+      all-dependencies:
         patterns:
           - "*"
 
+  # ──────────────────────────────────────────────
+  # kit-nextjs-skate-park
+  # ──────────────────────────────────────────────
   - package-ecosystem: "npm"
     directory: "/examples/kit-nextjs-skate-park"
+    target-branch: "dmz"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 0
+      interval: "weekly"
+    open-pull-requests-limit: 10
     commit-message:
-      prefix: "security"
+      prefix: "deps(skate-park)"
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-cloudsdk/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "typescript"
+      - dependency-name: "jest"
+      - dependency-name: "jest-environment-jsdom"
+      - dependency-name: "@testing-library/react"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      npm-security:
-        applies-to: security-updates
+      all-dependencies:
         patterns:
           - "*"
 
+  # ──────────────────────────────────────────────
+  # kit-nextjs-article-starter
+  # ──────────────────────────────────────────────
   - package-ecosystem: "npm"
     directory: "/examples/kit-nextjs-article-starter"
+    target-branch: "dmz"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 0
+      interval: "weekly"
+    open-pull-requests-limit: 10
     commit-message:
-      prefix: "security"
+      prefix: "deps(article-starter)"
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-cloudsdk/*"
+      - dependency-name: "@sitecore-feaas/*"
+      - dependency-name: "@sitecore/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "@next/bundle-analyzer"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "typescript"
+      - dependency-name: "jest"
+      - dependency-name: "jest-environment-jsdom"
+      - dependency-name: "@testing-library/react"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      npm-security:
-        applies-to: security-updates
+      all-dependencies:
         patterns:
           - "*"
 
+  # ──────────────────────────────────────────────
+  # kit-nextjs-location-finder
+  # ──────────────────────────────────────────────
   - package-ecosystem: "npm"
     directory: "/examples/kit-nextjs-location-finder"
+    target-branch: "dmz"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 0
+      interval: "weekly"
+    open-pull-requests-limit: 10
     commit-message:
-      prefix: "security"
+      prefix: "deps(location-finder)"
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-cloudsdk/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "@next/bundle-analyzer"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "typescript"
+      - dependency-name: "jest"
+      - dependency-name: "jest-environment-jsdom"
+      - dependency-name: "@testing-library/react"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      npm-security:
-        applies-to: security-updates
+      all-dependencies:
         patterns:
           - "*"
 
+  # ──────────────────────────────────────────────
+  # kit-nextjs-product-listing
+  # ──────────────────────────────────────────────
   - package-ecosystem: "npm"
     directory: "/examples/kit-nextjs-product-listing"
+    target-branch: "dmz"
     schedule:
-      interval: "daily"
-    open-pull-requests-limit: 0
+      interval: "weekly"
+    open-pull-requests-limit: 10
     commit-message:
-      prefix: "security"
+      prefix: "deps(product-listing)"
+    ignore:
+      - dependency-name: "@sitecore-content-sdk/*"
+      - dependency-name: "@sitecore-cloudsdk/*"
+      - dependency-name: "@sitecore-feaas/*"
+      - dependency-name: "@sitecore/*"
+      - dependency-name: "next"
+      - dependency-name: "react"
+      - dependency-name: "react-dom"
+      - dependency-name: "eslint-config-next"
+      - dependency-name: "@next/bundle-analyzer"
+      - dependency-name: "next-intl"
+      - dependency-name: "tailwindcss"
+      - dependency-name: "@tailwindcss/*"
+      - dependency-name: "typescript"
+      - dependency-name: "jest"
+      - dependency-name: "jest-environment-jsdom"
+      - dependency-name: "@testing-library/react"
+      - dependency-name: "*"
+        update-types: ["version-update:semver-major"]
     groups:
-      npm-security:
-        applies-to: security-updates
+      all-dependencies:
         patterns:
           - "*"

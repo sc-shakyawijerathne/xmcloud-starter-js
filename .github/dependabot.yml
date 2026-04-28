@@ -33,11 +33,6 @@ updates:
       - dependency-name: "next"
       - dependency-name: "react"
       - dependency-name: "react-dom"
-      - dependency-name: "eslint-config-next"
-      - dependency-name: "next-intl"
-      - dependency-name: "tailwindcss"
-      - dependency-name: "@tailwindcss/*"
-      - dependency-name: "typescript"
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     groups:
@@ -64,9 +59,6 @@ updates:
       - dependency-name: "next"
       - dependency-name: "react"
       - dependency-name: "react-dom"
-      - dependency-name: "eslint-config-next"
-      - dependency-name: "next-localization"
-      - dependency-name: "typescript"
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     groups:
@@ -92,18 +84,6 @@ updates:
       - dependency-name: "@angular-builders/*"
       - dependency-name: "@angular-devkit/*"
       - dependency-name: "@angular-eslint/*"
-      - dependency-name: "zone.js"
-      - dependency-name: "rxjs"
-      - dependency-name: "@apollo/client"
-      - dependency-name: "apollo-angular"
-      - dependency-name: "typescript"
-      - dependency-name: "webpack"
-      - dependency-name: "karma"
-      - dependency-name: "karma-*"
-      - dependency-name: "jasmine-core"
-      - dependency-name: "express"
-      - dependency-name: "eslint"
-      - dependency-name: "@typescript-eslint/*"
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     groups:
@@ -128,14 +108,6 @@ updates:
       - dependency-name: "next"
       - dependency-name: "react"
       - dependency-name: "react-dom"
-      - dependency-name: "eslint-config-next"
-      - dependency-name: "next-intl"
-      - dependency-name: "tailwindcss"
-      - dependency-name: "@tailwindcss/*"
-      - dependency-name: "typescript"
-      - dependency-name: "jest"
-      - dependency-name: "jest-environment-jsdom"
-      - dependency-name: "@testing-library/react"
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     groups:
@@ -162,15 +134,6 @@ updates:
       - dependency-name: "next"
       - dependency-name: "react"
       - dependency-name: "react-dom"
-      - dependency-name: "eslint-config-next"
-      - dependency-name: "@next/bundle-analyzer"
-      - dependency-name: "next-intl"
-      - dependency-name: "tailwindcss"
-      - dependency-name: "@tailwindcss/*"
-      - dependency-name: "typescript"
-      - dependency-name: "jest"
-      - dependency-name: "jest-environment-jsdom"
-      - dependency-name: "@testing-library/react"
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     groups:
@@ -195,15 +158,6 @@ updates:
       - dependency-name: "next"
       - dependency-name: "react"
       - dependency-name: "react-dom"
-      - dependency-name: "eslint-config-next"
-      - dependency-name: "@next/bundle-analyzer"
-      - dependency-name: "next-intl"
-      - dependency-name: "tailwindcss"
-      - dependency-name: "@tailwindcss/*"
-      - dependency-name: "typescript"
-      - dependency-name: "jest"
-      - dependency-name: "jest-environment-jsdom"
-      - dependency-name: "@testing-library/react"
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     groups:
@@ -230,15 +184,6 @@ updates:
       - dependency-name: "next"
       - dependency-name: "react"
       - dependency-name: "react-dom"
-      - dependency-name: "eslint-config-next"
-      - dependency-name: "@next/bundle-analyzer"
-      - dependency-name: "next-intl"
-      - dependency-name: "tailwindcss"
-      - dependency-name: "@tailwindcss/*"
-      - dependency-name: "typescript"
-      - dependency-name: "jest"
-      - dependency-name: "jest-environment-jsdom"
-      - dependency-name: "@testing-library/react"
       - dependency-name: "*"
         update-types: ["version-update:semver-major"]
     groups:

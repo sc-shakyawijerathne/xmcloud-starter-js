@@ -35,7 +35,7 @@
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "sass": "^1.87.0",
-    "sharp": "0.34.1"
+    "sharp": "0.34.5"
   },
   "devDependencies": {
     "@sitecore-content-sdk/cli": "^2.0.0",
@@ -52,7 +52,7 @@
     "eslint-plugin-prettier": "^5.4.0",
     "eslint-plugin-react": "^7.37.5",
     "npm-run-all2": "^8.0.4",
-    "prettier": "3.6.2",
+    "prettier": "3.8.3",
     "typescript": "~5.8.3"
   },
   "overrides": {

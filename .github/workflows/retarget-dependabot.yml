@@ -1,0 +1,45 @@
+name: Retarget Dependabot PRs to DMZ
+
+on:
+  pull_request:
+    branches: [main]
+    types: [opened]
+
+permissions:
+  pull-requests: write
+  contents: read
+
+jobs:
+  retarget:
+    if: github.actor == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Retarget PR base branch to dmz
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const prNumber = context.payload.pull_request.number;
+            const prTitle = context.payload.pull_request.title;
+
+            console.log(`Retargeting Dependabot PR #${prNumber} ("${prTitle}") from main to dmz`);
+
+            try {
+              await github.rest.pulls.update({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: prNumber,
+                base: 'dmz'
+              });
+
+              console.log(`Successfully retargeted PR #${prNumber} to dmz`);
+
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: 'This PR was automatically retargeted from `main` to `dmz` to match the repository branching strategy.'
+              });
+            } catch (error) {
+              console.error(`Failed to retarget PR #${prNumber}: ${error.message}`);
+              core.setFailed(`Failed to retarget PR: ${error.message}`);
+            }

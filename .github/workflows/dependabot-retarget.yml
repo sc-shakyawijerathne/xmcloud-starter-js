@@ -35,14 +35,11 @@ jobs:
 
       - name: Add explanatory comment
         run: |
-          gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body "$(cat <<'EOF'
-**Automatically retargeted to `dmz`**
+          gh pr comment "$PR_NUMBER" --repo "$GITHUB_REPOSITORY" --body "**Automatically retargeted to \`dmz\`**
 
-This Dependabot security update was opened against `main` (GitHub enforces this for security PRs). It has been retargeted to `dmz` to follow the [DMZ git-flow](.github/DMZ-WORKFLOW.md) used by this repository.
+          This Dependabot security update was opened against \`main\` (GitHub enforces this for security PRs). It has been retargeted to \`dmz\` to follow the [DMZ git-flow](.github/DMZ-WORKFLOW.md) used by this repository.
 
-Please review and merge into `dmz` as usual. The changes will reach `main` during the next scheduled dmz-to-main integration.
-EOF
-          )"
+          Please review and merge into \`dmz\` as usual. The changes will reach \`main\` during the next scheduled dmz-to-main integration."
         env:
           PR_NUMBER: ${{ github.event.pull_request.number }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

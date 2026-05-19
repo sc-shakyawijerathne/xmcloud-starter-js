@@ -331,6 +331,66 @@ SharedFields:
                 New-Item -Parent $dataFolder -Name "AI" -ItemType $addAiConfigBranchTemplate.ID | Out-Null
             }
             
+            Write-Verbose "Ensure Image headless rendering variants (Default, Banner) under Presentation"
+            $headlessVariantsPath = "$sitePath/Presentation/Headless Variants"
+            $imageVariantsPath = "$headlessVariantsPath/Image"
+            $imageHeadlessBranchId = "{C549C8C6-0AF4-4AD7-8A89-1E4695B23EF3}"
+            $headlessVariantTemplateId = "{4D50CDAE-C2D9-4DE8-B080-8F992BFB1B55}"
+            $imageDefaultVariantOriginatorId = "{17342388-971F-41E2-B22E-DA3FB9A339DA}"
+            $imageBannerVariantOriginatorId = "{77DE3501-AF38-4EB5-8E6C-740E4DF1348F}"
+            if (Test-Path $headlessVariantsPath) {
+                $hvParent = Get-Item -Path $headlessVariantsPath -Language $Site.Language
+                if (-not (Test-Path $imageVariantsPath)) {
+                    Write-Verbose "Insert shared Default Image Variant branch as Headless Variants/Image"
+                    New-Item -Parent $hvParent -Name "Image" -ItemType $imageHeadlessBranchId | Out-Null
+                }
+                if (Test-Path $imageVariantsPath) {
+                    $imageVariantsFolder = Get-Item -Path $imageVariantsPath -Language $Site.Language
+                    $imageFolderPath = $imageVariantsFolder.Paths.Path
+                    $defaultVariantItem = Get-ChildItem -Path $imageFolderPath -Language $Site.Language | Where-Object { $_.Name -eq "Default" }
+                    if (-not $defaultVariantItem) {
+                        Write-Verbose "Create missing Default rendering variant under Image"
+                        $defaultVariantItem = New-Item -Parent $imageVariantsFolder -Name "Default" -ItemType $headlessVariantTemplateId
+                        $defaultVariantItem.Editing.BeginEdit()
+                        $defaultVariantItem["__Originator"] = $imageDefaultVariantOriginatorId
+                        $defaultVariantItem.Editing.EndEdit() | Out-Null
+                    }
+                    $bannerVariantItem = Get-ChildItem -Path $imageFolderPath -Language $Site.Language | Where-Object { $_.Name -eq "Banner" }
+                    if (-not $bannerVariantItem) {
+                        Write-Verbose "Create missing Banner rendering variant under Image"
+                        $bannerVariantItem = New-Item -Parent $imageVariantsFolder -Name "Banner" -ItemType $headlessVariantTemplateId
+                        $bannerVariantItem.Editing.BeginEdit()
+                        $bannerVariantItem["__Originator"] = $imageBannerVariantOriginatorId
+                        $bannerVariantItem.Editing.EndEdit() | Out-Null
+                    }
+                }
+            }
+            
+            Write-Verbose "Use Media/Image rendering instead of Image Block in layout fields (variant alignment)"
+            $renderingImageForLayout = Get-Item -Path '/sitecore/layout/Renderings/Project/click-click-launch/Media/Image' -ErrorAction SilentlyContinue
+            $renderingImageBlockLegacy = Get-Item -Path '/sitecore/layout/Renderings/Project/click-click-launch/Media/Image Block' -ErrorAction SilentlyContinue
+            if ($renderingImageForLayout -and $renderingImageBlockLegacy) {
+                $blockGuid = $renderingImageBlockLegacy.ID.ToString()
+                $imageGuid = $renderingImageForLayout.ID.ToString()
+                $layoutFieldNames = @("__Final Renderings", "__Renderings")
+                foreach ($layoutItem in (Get-ChildItem -Path $sitePath -Recurse -Language $Site.Language)) {
+                    foreach ($layoutFieldName in $layoutFieldNames) {
+                        $layoutField = $layoutItem.Fields[$layoutFieldName]
+                        if ($layoutField -eq $null) { continue }
+                        $layoutValue = $layoutField.Value
+                        if ([string]::IsNullOrEmpty($layoutValue)) { continue }
+                        if ($layoutValue -notlike "*$blockGuid*") { continue }
+                        $updatedValue = $layoutValue.Replace($blockGuid, $imageGuid)
+                        if ($updatedValue -ne $layoutValue) {
+                            $layoutItem.Editing.BeginEdit()
+                            $layoutField.Value = $updatedValue
+                            $layoutItem.Editing.EndEdit() | Out-Null
+                            Write-Verbose "Swapped Image Block to Image on $($layoutItem.Paths.Path) — $layoutFieldName"
+                        }
+                    }
+                }
+            }
+            
             Write-Verbose "Enforce Default variant for Image renderings"
             $renderingImage = Get-Item -Path '/sitecore/layout/Renderings/Project/click-click-launch/Media/Image' -ErrorAction SilentlyContinue
             if ($renderingImage) {

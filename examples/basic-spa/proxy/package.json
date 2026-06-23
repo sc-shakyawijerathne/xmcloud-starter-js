@@ -21,7 +21,7 @@
     "compression": "^1.7.4",
     "express": "^5.1.0",
     "dotenv": "^16.0.3",
-    "http-proxy-middleware": "^4.0.0"
+    "http-proxy-middleware": "^4.1.1"
   },
   "devDependencies": {
     "@sitecore-jss/sitecore-jss": "~22.10.0",
